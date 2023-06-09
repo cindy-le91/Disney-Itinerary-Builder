@@ -4,8 +4,7 @@ import { useNavigate } from 'react-router-dom';
 function SignIn() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-const navigate = useNavigate();
-
+  const navigate = useNavigate();
 
   const handleSignIn = async () => {
     try {
@@ -58,6 +57,7 @@ const navigate = useNavigate();
         <button type="submit" onClick={handleSignIn}>
           Sign In
         </button>
+        <a>create account</a>
       </form>
     </div>
   );
