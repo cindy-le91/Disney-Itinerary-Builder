@@ -1,8 +1,7 @@
+import { useNavigate } from 'react-router-dom';
 
-export default function Home () {
-  return (
-      <div>
-        Home
-      </div>
-  )
+export default function Home() {
+  const navigate = useNavigate();
+
+  return <div>Home</div>;
 }

@@ -7,7 +7,7 @@ export default function Header() {
   useEffect(() => {
     function checkForLoggedInUser() {
       if (!sessionStorage.getItem('token')) {
-        navigate('/sign-in');
+        // navigate('/sign-in');
       }
     }
 
@@ -24,7 +24,7 @@ export default function Header() {
         alignItems: 'center',
         display: 'flex',
         fontFamily: 'Sacramento',
-        fontSize: '32px',
+        fontSize: '40px',
       }}>
       Disney Itinerary Builder
     </div>

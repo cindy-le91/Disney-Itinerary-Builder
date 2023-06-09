@@ -33,32 +33,39 @@ function SignIn() {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}>
       <h2>Sign In</h2>
       <form onSubmit={(e) => e.preventDefault()}>
-        <label>
-          Username:
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </label>
+        <input
+          placeholder="Username"
+          type="text"
+          class="form-control"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
         <br />
-        <label>
-          Password:
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
+        <input
+          placeholder="Password"
+          type="password"
+          class="form-control"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <br />
-        <button type="submit" onClick={handleSignIn}>
+      </form>
+      <div>
+        <button type="submit" class="btn btn-primary" onClick={handleSignIn}>
           Sign In
         </button>
-        <a>create account</a>
-      </form>
+        <div>
+          Don't have an account?<a href="/sign-up">Sign Up</a>
+        </div>
+      </div>
     </div>
   );
 }

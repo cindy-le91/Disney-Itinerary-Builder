@@ -6,7 +6,6 @@ function SignUp() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-
   const handleSignUp = async () => {
     try {
       const response = await fetch('/api/auth/sign-up', {
@@ -23,7 +22,6 @@ function SignUp() {
 
       // Handle successful sign-in, e.g., set token in local storage, update state, etc.
       navigate('/sign-in');
-
     } catch (error) {
       // Handle error during sign-in
       console.error('Error signing in:', error);
@@ -31,31 +29,35 @@ function SignUp() {
   };
 
   return (
-    <div>
-      <h2>Sign Up</h2>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}>
+      <h2>Register</h2>
       <form onSubmit={(e) => e.preventDefault()}>
-        <label>
-          Username:
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </label>
+        <input
+          placeholder="Username"
+          type="text"
+          class="form-control"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
         <br />
-        <label>
-          Password:
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
+
+        <input
+          placeholder="Password"
+          type="password"
+          class="form-control"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <br />
-        <button type="submit" onClick={handleSignUp}>
-          Sign Up
-        </button>
       </form>
+      <button type="submit" class="btn btn-primary" onClick={handleSignUp}>
+        Sign Up
+      </button>
     </div>
   );
 }
