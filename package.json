@@ -35,5 +35,9 @@
     "stylelint": "^15.4.0",
     "stylelint-config-recommended": "^11.0.0",
     "stylelint-config-standard": "^32.0.0"
+  },
+  "dependencies": {
+    "react-hook-form": "^7.44.3",
+    "react-router-dom": "^6.12.1"
   }
 }
