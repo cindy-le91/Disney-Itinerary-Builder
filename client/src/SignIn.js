@@ -44,7 +44,7 @@ function SignIn() {
         <input
           placeholder="Username"
           type="text"
-          class="form-control"
+          className="form-control"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
@@ -52,18 +52,21 @@ function SignIn() {
         <input
           placeholder="Password"
           type="password"
-          class="form-control"
+          className="form-control"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <br />
       </form>
       <div>
-        <button type="submit" class="btn btn-primary" onClick={handleSignIn}>
+        <button
+          type="submit"
+          className="btn btn-primary"
+          onClick={handleSignIn}>
           Sign In
         </button>
         <div>
-          Don't have an account?<a href="/sign-up">Sign Up</a>
+          Don't have an account? <a href="/sign-up">Sign Up</a>
         </div>
       </div>
     </div>

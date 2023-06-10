@@ -40,7 +40,7 @@ function SignUp() {
         <input
           placeholder="Username"
           type="text"
-          class="form-control"
+          className="form-control"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
@@ -49,13 +49,13 @@ function SignUp() {
         <input
           placeholder="Password"
           type="password"
-          class="form-control"
+          className="form-control"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <br />
       </form>
-      <button type="submit" class="btn btn-primary" onClick={handleSignUp}>
+      <button type="submit" className="btn btn-primary" onClick={handleSignUp}>
         Sign Up
       </button>
     </div>
