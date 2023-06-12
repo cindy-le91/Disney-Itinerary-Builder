@@ -1,8 +1,13 @@
-import { useEffect, useState } from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import SignIn from './SignIn.js';
+import SignUp from './SignUp.js';
+import Home from './Home.js';
+import Header from './Header.js';
+
 import './App.css';
 
-function App() {
+const App = () => {
   const [serverData, setServerData] = useState('');
 
   useEffect(() => {
@@ -15,17 +20,27 @@ function App() {
       setServerData(data.message);
     }
 
+    function checkForLoggedInUser() {
+      if (!sessionStorage.getItem('token')) {
+      }
+    }
+
     readServerData();
+    checkForLoggedInUser();
   }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>{serverData}</h1>
-      </header>
-    </div>
+    <Router>
+      <Header />
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;

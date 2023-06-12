@@ -26,6 +26,7 @@
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.1.1",
+    "httpie": "^1.1.2",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.1",
     "markuplint": "^3.7.0",
@@ -34,5 +35,9 @@
     "stylelint": "^15.4.0",
     "stylelint-config-recommended": "^11.0.0",
     "stylelint-config-standard": "^32.0.0"
+  },
+  "dependencies": {
+    "react-hook-form": "^7.44.3",
+    "react-router-dom": "^6.12.1"
   }
 }
