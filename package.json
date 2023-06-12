@@ -37,6 +37,7 @@
     "stylelint-config-standard": "^32.0.0"
   },
   "dependencies": {
+    "bootstrap-icons": "^1.10.5",
     "react-hook-form": "^7.44.3",
     "react-router-dom": "^6.12.1"
   }
