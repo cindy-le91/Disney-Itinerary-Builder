@@ -5,11 +5,11 @@ export default function Dining(props) {
   const { dining } = props;
 
   return (
-    <div class="row">
-      <div class="col-4">
-        <i class="bi bi-emoji-smile"></i>
+    <div className="row">
+      <div className="col-4">
+        <i className="bi bi-emoji-smile"></i>
       </div>
-      <div class="col-8">{dining.name}</div>
+      <div className="col-8">{dining.name}</div>
     </div>
   );
 }

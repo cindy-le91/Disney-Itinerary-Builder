@@ -5,7 +5,7 @@ export default function Tabs() {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div style={{}}>
       <div style={{ display: 'flex' }}>
         <div
           style={{

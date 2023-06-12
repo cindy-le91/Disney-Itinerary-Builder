@@ -1,16 +1,42 @@
 import { useEffect } from 'react';
-import Tabs from './Tabs.js';
 
 export default function Attraction(props) {
   const { attraction } = props;
-
-  console.log(attraction);
   return (
-    <div class="row">
-      <div class="col-4">
-        <i class="bi bi-emoji-smile"></i>
+    <div>
+      <div
+        className="row border-bottom"
+        style={{
+          height: '100px',
+        }}>
+        <div
+          className="col-2"
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <i className="bi bi-emoji-smile"></i>
+        </div>
+        <div
+          className="col-8"
+          style={{
+            display: 'flex',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+          }}>
+          {attraction.name}
+        </div>
+        <div
+          className="col-2"
+          style={{
+            display: 'flex',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+          }}>
+          <i class="bi bi-plus-circle"></i>
+        </div>
       </div>
-      <div class="col-8">{attraction.name}</div>
     </div>
   );
 }

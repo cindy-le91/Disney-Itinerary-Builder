@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import Tabs from './Tabs.js';
 import Dining from './Dining.js';
 
 export default function Dinings() {
@@ -7,10 +6,10 @@ export default function Dinings() {
 
   useEffect(() => {
     async function fetchDining() {
-      const disneyLandResortId = 'bfc89fd6-314d-44b4-b89e-df1a89cf991e';
+      const disneyLandResortId = '7340550b-c14d-4def-80bb-acdb51d49a66';
 
       const response = await fetch(
-        'https://api.themeparks.wiki/v1/entity/bfc89fd6-314d-44b4-b89e-df1a89cf991e/children'
+        `https://api.themeparks.wiki/v1/entity/${disneyLandResortId}/children`
       );
       const jsonData = await response.json();
 
@@ -26,7 +25,6 @@ export default function Dinings() {
 
   return (
     <div>
-      <Tabs />
       {dinings.map((dining) => (
         <Dining dining={dining} />
       ))}

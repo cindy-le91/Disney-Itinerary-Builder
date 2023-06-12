@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react';
-import Tabs from './Tabs.js';
 import Attraction from './Attraction.js';
 
 export default function Attractions() {
   const [attractions, setAttractions] = useState([]);
 
   useEffect(() => {
+    const locationMap = {
+      matterhornbobsleds: 'FantasyLand',
+    };
     async function fetchAttractions() {
-      const disneyLandResortId = 'bfc89fd6-314d-44b4-b89e-df1a89cf991e';
+      const disneyLandResortId = '7340550b-c14d-4def-80bb-acdb51d49a66';
 
       const response = await fetch(
-        'https://api.themeparks.wiki/v1/entity/bfc89fd6-314d-44b4-b89e-df1a89cf991e/children'
+        `https://api.themeparks.wiki/v1/entity/${disneyLandResortId}/children`
       );
       const jsonData = await response.json();
 
@@ -24,11 +26,18 @@ export default function Attractions() {
     fetchAttractions();
   }, []);
 
+  function findLocation() {
+    console.log('test');
+  }
+
   return (
     <div>
-      <Tabs />
       {attractions.map((attraction) => (
-        <Attraction key={attraction.id} attraction={attraction} />
+        <Attraction
+          key={attraction.id}
+          attraction={attraction}
+          location={findLocation()}
+        />
       ))}
     </div>
   );
