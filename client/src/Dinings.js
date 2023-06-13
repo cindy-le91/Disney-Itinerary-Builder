@@ -2,7 +2,38 @@ import { useEffect, useState } from 'react';
 import Dining from './Dining.js';
 
 export default function Dinings() {
-  const [dinings, setDinings] = useState([]);
+  const restaurants = [
+    'Alien Pizza Planet',
+    'Bengal Barbecue',
+    'Blue Bayou Restaurant',
+    'Café Daisy',
+    'Cafe Orleans',
+    'Carnation Cafe',
+    'Docking Bay 7 Food and Cargo',
+    'Galactic Grill',
+    'Gibson Girl Ice Cream Parlor',
+    'The Golden Horseshoe',
+    'Harbour Galley',
+    'HUngry Bear Restaurant',
+    'Jolly Holiday Bakery Cafe',
+    "Kat Saka's Kettle",
+    'Market House',
+    "Maurice's Treats",
+    'Milk Stand',
+    "Oga's Cantina",
+    'Plaza Inn',
+    'Rancho del Zocalo Restaurante',
+    'Red Rose Taverne',
+    'River Belle Terrace',
+    'Ronto Roasters',
+    'Royal Street Veranda',
+    'Stage Door Café',
+    'Tiki Juice Bar',
+    'Tomorrowland Skyline Terrace',
+    'The Tropical Hideaway',
+    'Troubadour Tavern',
+  ];
+  const [dinings, setDinings] = useState(restaurants);
 
   useEffect(() => {
     async function fetchDining() {
