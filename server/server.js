@@ -5,6 +5,7 @@ import argon2 from 'argon2';
 import jwt from 'jsonwebtoken';
 import ClientError from './lib/client-error.js';
 import errorMiddleware from './lib/error-middleware.js';
+import authorizationMiddleware from './lib/authorization-middleware.js';
 
 // eslint-disable-next-line no-unused-vars -- Remove when used
 const db = new pg.Pool({
@@ -74,6 +75,14 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
     const payload = { userId, username };
     const token = jwt.sign(payload, process.env.TOKEN_SECRET);
     res.json({ token, user: payload });
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.post('/api/trip', authorizationMiddleware, async (req, res, next) => {
+  try {
+    console.log('test');
   } catch (err) {
     next(err);
   }

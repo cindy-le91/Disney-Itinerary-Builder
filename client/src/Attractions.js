@@ -41,8 +41,10 @@ export default function Attractions() {
     console.log('adds to trip');
   };
 
-  const handleTimeChange = (time) => {
-    setSelectedTime(time);
+  const handleSelectedTime = (selectedTime) => {
+    // Do something with the selected time
+    setSelectedTime(selectedTime);
+    console.log('Selected Time:', selectedTime);
   };
 
   return (
@@ -65,14 +67,14 @@ export default function Attractions() {
               </button>
             </div>
             <div className="modal-body">
-              <TimePicker />
+              <TimePicker getSelectedTime={handleSelectedTime} />
             </div>
             <div className="modal-footer">
               <button
                 onClick={addToTrip}
                 type="button"
                 className="btn btn-primary">
-                Save changes
+                Add to Trip
               </button>
               <button
                 type="button"
