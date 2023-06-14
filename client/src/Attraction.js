@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 
 export default function Attraction(props) {
-  const { attraction, openModal } = props;
+  const { attraction, openModal, onSelectAttraction } = props;
 
   function handleClick() {
-    openModal('test');
+    openModal();
+    onSelectAttraction(attraction);
   }
 
   return (

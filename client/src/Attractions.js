@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import Attraction from './Attraction.js';
 import TimePicker from './TimePicker.js';
 
-export default function Attractions() {
+export default function Attractions({ authUser }) {
   const [attractions, setAttractions] = useState([]);
+  const [selectedAttraction, setSelectedAttraction] = useState(null);
   const [selectedTime, setSelectedTime] = useState();
 
   useEffect(() => {
@@ -60,6 +61,7 @@ export default function Attractions() {
       goofysplayhouse: "Mickey's Toontown",
       donaldsboat: "Mickey's Toontown",
     };
+
     async function fetchAttractions() {
       const disneyLandResortId = '7340550b-c14d-4def-80bb-acdb51d49a66';
 
@@ -99,8 +101,8 @@ export default function Attractions() {
           // Add any additional headers if required
         },
         body: JSON.stringify({
-          userId: 1,
-          eventName: 'test',
+          userId: authUser.userId,
+          eventName: selectedAttraction.name,
           startTime: selectedTime,
         }), // Convert data to JSON format
       });
@@ -119,13 +121,17 @@ export default function Attractions() {
     setSelectedTime(selectedTime);
   };
 
+  const handleSelectedAttraction = (attraction) => {
+    setSelectedAttraction(attraction);
+  };
+
   return (
     <div>
       <div id="myModal" className="modal" tabIndex="-1" role="dialog">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title">Modal title</h5>
+              <h5 className="modal-title">Event Time</h5>
               <button
                 type="button"
                 className="close"
@@ -168,6 +174,7 @@ export default function Attractions() {
           key={attraction.id}
           attraction={attraction}
           location={findLocation()}
+          onSelectAttraction={handleSelectedAttraction}
           openModal={openModal}
         />
       ))}

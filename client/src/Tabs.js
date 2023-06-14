@@ -14,6 +14,8 @@ export default function Tabs() {
             border: '1px solid #ccc',
             padding: '10px',
             borderBottom: '1px solid transparent',
+            fontSize: '24px',
+            fontFamily: 'Poppins, sans-serif',
           }}>
           <Link to="/trips">Trips</Link>
         </div>
@@ -23,6 +25,8 @@ export default function Tabs() {
             textAlign: 'center',
             border: '1px solid #ccc',
             padding: '10px',
+            fontSize: '24px',
+            fontFamily: 'Poppins, sans-serif',
           }}>
           <Link to="/attractions">Attractions</Link>
         </div>
@@ -32,6 +36,8 @@ export default function Tabs() {
             textAlign: 'center',
             border: '1px solid #ccc',
             padding: '10px',
+            fontSize: '24px',
+            fontFamily: 'Poppins, sans-serif',
           }}>
           <Link to="/dinings">Dining</Link>
         </div>
@@ -41,6 +47,8 @@ export default function Tabs() {
             textAlign: 'center',
             border: '1px solid #ccc',
             padding: '10px',
+            fontSize: '24px',
+            fontFamily: 'Poppins, sans-serif',
           }}>
           <Link to="/map">Map</Link>
         </div>

@@ -2,7 +2,12 @@ import { useEffect } from 'react';
 import Tabs from './Tabs.js';
 
 export default function Dining(props) {
-  const { dining } = props;
+  const { dining, openModal, onSelectAttraction } = props;
+
+  function handleClick() {
+    openModal();
+    onSelectAttraction(dining);
+  }
 
   return (
     <div>
@@ -36,7 +41,9 @@ export default function Dining(props) {
             justifyContent: 'flex-start',
             alignItems: 'center',
           }}>
-          <i class="bi bi-plus-circle"></i>
+          <button onClick={handleClick} type="button" class="btn btn-primary">
+            <i class="bi bi-plus"></i>
+          </button>
         </div>
       </div>
     </div>

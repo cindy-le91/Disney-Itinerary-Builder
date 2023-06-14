@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function SignIn({ loginUser }) {
+function SignIn({ onLogin }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ function SignIn({ loginUser }) {
       const { token, user } = await response.json();
       // Handle successful sign-in, e.g., set token in local storage, update state, etc.
       sessionStorage.setItem('token', token);
-      loginUser(user);
+      onLogin(user);
       navigate('/');
 
       console.log('Sign-in successful:', token, user);

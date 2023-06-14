@@ -87,6 +87,15 @@ app.post('/api/trip', authorizationMiddleware, async (req, res, next) => {
     console.log(eventName);
     console.log(startTime);
 
+    const sql = `
+      insert into "Events" ("userId", "eventName", "startTime", date) VALUES ($1, $2, $3, NOW())
+    `;
+
+    const data = [userId, eventName, startTime];
+
+    const response = db.query(sql, data);
+    console.log(response);
+
     res.json({ message: 'hi' }); // Send the JSON response
   } catch (err) {
     next(err);

@@ -34,7 +34,6 @@ const App = () => {
 
   const handleLogin = (user) => {
     setAuthUser(user);
-    console.log(authUser);
   };
 
   const containerStyle = {
@@ -46,8 +45,11 @@ const App = () => {
       <Header />
       <div className="container" style={containerStyle}>
         <Routes>
-          <Route path="/attractions" element={<Attractions />} />
-          <Route path="/dinings" element={<Dinings />} />
+          <Route
+            path="/attractions"
+            element={<Attractions authUser={authUser} />}
+          />
+          <Route path="/dinings" element={<Dinings authUser={authUser} />} />
           <Route path="/sign-in" element={<SignIn onLogin={handleLogin} />} />
           <Route path="/sign-up" element={<SignUp />} />
         </Routes>
