@@ -11,6 +11,7 @@ import './App.css';
 
 const App = () => {
   const [serverData, setServerData] = useState('');
+  const [authUser, setAuthUser] = useState(null); // State to store the signed-in user
 
   useEffect(() => {
     async function readServerData() {
@@ -31,6 +32,10 @@ const App = () => {
     checkForLoggedInUser();
   }, []);
 
+  const handleLogin = (user) => {
+    setAuthUser(user);
+  };
+
   const containerStyle = {
     width: '100%',
   };
@@ -40,9 +45,12 @@ const App = () => {
       <Header />
       <div className="container" style={containerStyle}>
         <Routes>
-          <Route path="/attractions" element={<Attractions />} />
-          <Route path="/dinings" element={<Dinings />} />
-          <Route path="/sign-in" element={<SignIn />} />
+          <Route
+            path="/attractions"
+            element={<Attractions authUser={authUser} />}
+          />
+          <Route path="/dinings" element={<Dinings authUser={authUser} />} />
+          <Route path="/sign-in" element={<SignIn onLogin={handleLogin} />} />
           <Route path="/sign-up" element={<SignUp />} />
         </Routes>
       </div>

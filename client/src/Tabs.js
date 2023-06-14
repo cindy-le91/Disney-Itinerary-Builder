@@ -13,9 +13,14 @@ export default function Tabs() {
             textAlign: 'center',
             border: '1px solid #ccc',
             padding: '10px',
-            borderBottom: '1px solid transparent',
+            fontSize: '24px',
+            fontFamily: 'Poppins, sans-serif',
+            borderRadius: '10px',
+            color: 'black',
           }}>
-          <Link to="/trips">Trips</Link>
+          <Link to="/trips" style={{ textDecoration: 'none', color: 'black' }}>
+            Trips
+          </Link>
         </div>
         <div
           style={{
@@ -23,8 +28,15 @@ export default function Tabs() {
             textAlign: 'center',
             border: '1px solid #ccc',
             padding: '10px',
+            fontSize: '24px',
+            fontFamily: 'Poppins, sans-serif',
+            borderRadius: '10px',
           }}>
-          <Link to="/attractions">Attractions</Link>
+          <Link
+            to="/attractions"
+            style={{ textDecoration: 'none', color: 'black' }}>
+            Attractions
+          </Link>
         </div>
         <div
           style={{
@@ -32,8 +44,15 @@ export default function Tabs() {
             textAlign: 'center',
             border: '1px solid #ccc',
             padding: '10px',
+            fontSize: '24px',
+            fontFamily: 'Poppins, sans-serif',
+            borderRadius: '10px',
           }}>
-          <Link to="/dinings">Dining</Link>
+          <Link
+            to="/dinings"
+            style={{ textDecoration: 'none', color: 'black' }}>
+            Dining
+          </Link>
         </div>
         <div
           style={{
@@ -41,25 +60,15 @@ export default function Tabs() {
             textAlign: 'center',
             border: '1px solid #ccc',
             padding: '10px',
+            fontSize: '24px',
+            fontFamily: 'Poppins, sans-serif',
+            borderRadius: '10px',
           }}>
-          <Link to="/map">Map</Link>
+          <Link to="/map" style={{ textDecoration: 'none', color: 'black' }}>
+            Map
+          </Link>
         </div>
       </div>
-
-      {/* <ul className="nav nav-tabs">
-        <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="#">Active</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#">Link</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#">Link</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link disabled">Disabled</a>
-        </li>
-      </ul> */}
     </div>
   );
 }

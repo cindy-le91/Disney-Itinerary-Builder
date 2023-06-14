@@ -2,7 +2,12 @@ import { useEffect } from 'react';
 import Tabs from './Tabs.js';
 
 export default function Dining(props) {
-  const { dining } = props;
+  const { dining, openModal, onSelectAttraction } = props;
+
+  function handleClick() {
+    openModal();
+    onSelectAttraction(dining);
+  }
 
   return (
     <div>
@@ -26,6 +31,7 @@ export default function Dining(props) {
             display: 'flex',
             justifyContent: 'flex-start',
             alignItems: 'center',
+            fontSize: '20px',
           }}>
           {dining.name}
         </div>
@@ -36,7 +42,23 @@ export default function Dining(props) {
             justifyContent: 'flex-start',
             alignItems: 'center',
           }}>
-          <i class="bi bi-plus-circle"></i>
+          <button
+            onClick={handleClick}
+            type="button"
+            className="btn btn-primary"
+            style={{
+              backgroundColor: '#C3CDE6',
+              color: 'white',
+              borderRadius: '50%',
+              border: 'none',
+              width: '40px',
+              height: '40px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <i className="bi bi-plus" style={{ fontSize: '24px' }}></i>
+          </button>
         </div>
       </div>
     </div>

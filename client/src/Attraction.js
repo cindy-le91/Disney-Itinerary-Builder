@@ -1,7 +1,13 @@
 import { useEffect } from 'react';
 
 export default function Attraction(props) {
-  const { attraction } = props;
+  const { attraction, openModal, onSelectAttraction } = props;
+
+  function handleClick() {
+    openModal();
+    onSelectAttraction(attraction);
+  }
+
   return (
     <div>
       <div
@@ -24,6 +30,7 @@ export default function Attraction(props) {
             display: 'flex',
             justifyContent: 'flex-start',
             alignItems: 'center',
+            fontSize: '20px',
           }}>
           {attraction.name}
         </div>
@@ -34,7 +41,23 @@ export default function Attraction(props) {
             justifyContent: 'flex-start',
             alignItems: 'center',
           }}>
-          <i class="bi bi-plus-circle"></i>
+          <button
+            onClick={handleClick}
+            type="button"
+            className="btn btn-primary"
+            style={{
+              backgroundColor: '#C3CDE6',
+              color: 'white',
+              borderRadius: '50%',
+              border: 'none',
+              width: '40px',
+              height: '40px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <i className="bi bi-plus" style={{ fontSize: '24px' }}></i>
+          </button>
         </div>
       </div>
     </div>

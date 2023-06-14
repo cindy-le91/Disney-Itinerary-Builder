@@ -5,6 +5,7 @@ import argon2 from 'argon2';
 import jwt from 'jsonwebtoken';
 import ClientError from './lib/client-error.js';
 import errorMiddleware from './lib/error-middleware.js';
+import authorizationMiddleware from './lib/authorization-middleware.js';
 
 // eslint-disable-next-line no-unused-vars -- Remove when used
 const db = new pg.Pool({
@@ -77,6 +78,38 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+});
+
+app.post('/api/trip', authorizationMiddleware, async (req, res, next) => {
+  try {
+    const { userId, eventName, startTime } = req.body;
+
+    const sql = `
+      insert into "Events" ("userId", "eventName", "startTime", date) VALUES ($1, $2, $3, NOW())
+    `;
+
+    const data = [userId, eventName, startTime];
+
+    const response = db.query(sql, data);
+    console.log(response);
+
+    res.json({ message: 'success' }); // TODO send proper response
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.get('/api/trip', (req, res) => {
+  const { userId } = req.body;
+
+  const sql = `
+      SELECT * FROM "Events" WHERE "userId" = $1;
+    `;
+
+  const data = [userId];
+
+  const response = db.query(sql, data);
+  console.log(response);
 });
 
 app.get('/api/hello', (req, res) => {
