@@ -31,6 +31,7 @@ export default function Dining(props) {
             display: 'flex',
             justifyContent: 'flex-start',
             alignItems: 'center',
+            fontSize: '20px',
           }}>
           {dining.name}
         </div>
@@ -41,8 +42,22 @@ export default function Dining(props) {
             justifyContent: 'flex-start',
             alignItems: 'center',
           }}>
-          <button onClick={handleClick} type="button" class="btn btn-primary">
-            <i class="bi bi-plus"></i>
+          <button
+            onClick={handleClick}
+            type="button"
+            className="btn btn-primary"
+            style={{
+              backgroundColor: '#C3CDE6',
+              color: 'white',
+              borderRadius: '50%',
+              border: 'none',
+              width: '40px',
+              height: '40px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <i className="bi bi-plus" style={{ fontSize: '24px' }}></i>
           </button>
         </div>
       </div>

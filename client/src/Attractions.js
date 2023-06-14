@@ -131,28 +131,21 @@ export default function Attractions({ authUser }) {
       <div id="myModal" className="modal" tabIndex="-1" role="dialog">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title">Event Time</h5>
-              <button
-                type="button"
-                className="close"
-                data-dismiss="modal"
-                aria-label="Close"
-                onClick={() => {
-                  const modal = document.getElementById('myModal');
-                  modal.style.display = 'none';
-                }}>
-                <span aria-hidden="true">&times;</span>
-              </button>
+            <div className="modal-header text-center">
+              <h5 className="modal-title mx-auto">Event Time</h5>
             </div>
-            <div className="modal-body">
+            <div className="modal-body d-flex justify-content-center">
               <TimePicker getSelectedTime={handleSelectedTime} />
             </div>
-            <div className="modal-footer">
+            <div className="modal-footer d-flex justify-content-center">
               <button
-                onClick={addToTrip}
                 type="button"
-                className="btn btn-primary">
+                className="btn btn-primary"
+                style={{
+                  backgroundColor: '#C3CDE6',
+                  color: 'white',
+                  border: 'none',
+                }}>
                 Add to Trip
               </button>
               <button
