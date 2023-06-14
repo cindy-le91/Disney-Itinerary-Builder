@@ -83,9 +83,6 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
 app.post('/api/trip', authorizationMiddleware, async (req, res, next) => {
   try {
     const { userId, eventName, startTime } = req.body;
-    console.log(userId);
-    console.log(eventName);
-    console.log(startTime);
 
     const sql = `
       insert into "Events" ("userId", "eventName", "startTime", date) VALUES ($1, $2, $3, NOW())
@@ -96,10 +93,23 @@ app.post('/api/trip', authorizationMiddleware, async (req, res, next) => {
     const response = db.query(sql, data);
     console.log(response);
 
-    res.json({ message: 'hi' }); // Send the JSON response
+    res.json({ message: 'success' }); // TODO send proper response
   } catch (err) {
     next(err);
   }
+});
+
+app.get('/api/trip', (req, res) => {
+  const { userId } = req.body;
+
+  const sql = `
+      SELECT * FROM "Events" WHERE "userId" = $1;
+    `;
+
+  const data = [userId];
+
+  const response = db.query(sql, data);
+  console.log(response);
 });
 
 app.get('/api/hello', (req, res) => {

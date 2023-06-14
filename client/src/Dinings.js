@@ -73,6 +73,8 @@ export default function Dinings({ authUser }) {
 
   const addToTrip = async () => {
     const token = sessionStorage.getItem('token'); // Retrieve the bearer token from session storage
+    const modal = document.getElementById('myModal');
+    modal.style.display = 'none';
 
     try {
       const response = await fetch('/api/trip', {
