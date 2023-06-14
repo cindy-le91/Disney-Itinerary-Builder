@@ -87,14 +87,36 @@ export default function Attractions() {
     modal.style.display = 'block';
   };
 
-  const addToTrip = () => {
-    console.log('adds to trip');
+  const addToTrip = async () => {
+    const token = sessionStorage.getItem('token'); // Retrieve the bearer token from session storage
+
+    try {
+      const response = await fetch('/api/trip', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+          // Add any additional headers if required
+        },
+        body: JSON.stringify({
+          userId: 1,
+          eventName: 'test',
+          startTime: selectedTime,
+        }), // Convert data to JSON format
+      });
+
+      if (response.ok) {
+        console.log('Trip added successfully');
+      } else {
+        console.error('Error adding trip');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   const handleSelectedTime = (selectedTime) => {
-    // Do something with the selected time
     setSelectedTime(selectedTime);
-    console.log('Selected Time:', selectedTime);
   };
 
   return (

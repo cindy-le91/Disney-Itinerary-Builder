@@ -3,7 +3,10 @@ import ClientError from './client-error.js';
 
 export default function authorizationMiddleware(req, res, next) {
   // The token will be in the Authorization header with the format `Bearer ${token}`
+  console.log(req.get('authorization'));
+
   const token = req.get('authorization')?.split('Bearer ')[1];
+
   if (!token) {
     throw new ClientError(401, 'authentication required');
   }

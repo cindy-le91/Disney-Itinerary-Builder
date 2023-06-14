@@ -82,7 +82,12 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
 
 app.post('/api/trip', authorizationMiddleware, async (req, res, next) => {
   try {
-    console.log('test');
+    const { userId, eventName, startTime } = req.body;
+    console.log(userId);
+    console.log(eventName);
+    console.log(startTime);
+
+    res.json({ message: 'hi' }); // Send the JSON response
   } catch (err) {
     next(err);
   }
