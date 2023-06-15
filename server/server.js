@@ -99,17 +99,17 @@ app.post('/api/trip', authorizationMiddleware, async (req, res, next) => {
   }
 });
 
-app.get('/api/trip', (req, res) => {
-  const { userId } = req.body;
-
+app.get('/api/trip', async (req, res) => {
+  const { userId } = req.query;
   const sql = `
-      SELECT * FROM "Events" WHERE "userId" = $1;
-    `;
+    SELECT * FROM "Events" WHERE "userId" = $1 ORDER BY "startTime" ASC;
+  `;
 
   const data = [userId];
 
-  const response = db.query(sql, data);
-  console.log(response);
+  const response = await db.query(sql, data);
+
+  res.json(response.rows);
 });
 
 app.get('/api/hello', (req, res) => {
