@@ -27,6 +27,7 @@ export default function Header() {
           display: 'flex',
           fontFamily: 'Sacramento',
           fontSize: '48px',
+          marginBottom: '20px',
         }}>
         Disney Itinerary Builder
       </div>

@@ -55,6 +55,9 @@ export default function Trip({ trip }) {
             justifyContent: 'flex-start',
             alignItems: 'center',
           }}>
+          <div class="dots">
+            <div></div>
+          </div>
           <button
             onClick={handleClick}
             type="button"
