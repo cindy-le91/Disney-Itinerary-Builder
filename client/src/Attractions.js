@@ -139,6 +139,7 @@ export default function Attractions({ authUser }) {
             </div>
             <div className="modal-footer d-flex justify-content-center">
               <button
+                onClick={addToTrip}
                 type="button"
                 className="btn btn-primary"
                 style={{
