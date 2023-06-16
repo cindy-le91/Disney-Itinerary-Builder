@@ -112,6 +112,64 @@ app.get('/api/trip', async (req, res) => {
   res.json(response.rows);
 });
 
+app.delete('/api/trip/:id', async (req, res) => {
+  const { id } = req.params;
+
+  const sql = `
+    DELETE FROM "Events" WHERE "eventId" = $1;
+  `;
+
+  const data = [id];
+
+  try {
+    const response = await db.query(sql, data);
+
+    if (response.rowCount === 0) {
+      // If no rows were deleted, it means the event with the provided ID does not exist
+      res.status(404).json({ error: 'Event not found.' });
+    } else {
+      // If a row was deleted, it means the deletion was successful
+      res.json({
+        message: 'Event deleted successfully.',
+        deletedEvent: response.rows[0],
+      });
+    }
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: 'An error occurred while deleting the event.' });
+  }
+});
+
+app.put('/api/trip/:id', async (req, res) => {
+  const { startTime } = req.query;
+  const { id } = req.params;
+  const sql = `
+    UPDATE "Events" SET "startTime" = $1 WHERE "eventId" = $2 RETURNING *;
+  `;
+
+  const data = [startTime, id];
+
+  try {
+    const response = await db.query(sql, data);
+
+    if (response.rowCount === 0) {
+      // If no rows were updated, it means the event with the provided ID does not exist
+      res.status(404).json({ error: 'Event not found.' });
+    } else {
+      // If a row was updated, it means the startTime column was updated for the event
+      res.json({
+        message: 'startTime updated successfully.',
+        updatedEvent: response.rows[0],
+      });
+    }
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: 'An error occurred while updating the startTime.' });
+  }
+});
+
 app.get('/api/hello', (req, res) => {
   res.json({ message: 'Hello, World!' });
 });
