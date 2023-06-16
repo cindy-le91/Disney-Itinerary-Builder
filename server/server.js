@@ -114,6 +114,7 @@ app.get('/api/trip', async (req, res) => {
 
 app.delete('/api/trip/:id', async (req, res) => {
   const { id } = req.params;
+  console.log(id);
 
   const sql = `
     DELETE FROM "Events" WHERE "eventId" = $1;

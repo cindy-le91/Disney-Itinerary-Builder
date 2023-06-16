@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
-export default function Trip({ trip }) {
+export default function Trip({ trip, onTripDelete }) {
   function convertTimeFormat(timeString) {
     const [hours, minutes, seconds] = timeString.split(':');
     const date = new Date();
@@ -20,6 +20,30 @@ export default function Trip({ trip }) {
   const handleClick = () => {
     console.log('test');
   };
+
+  const handleEdit = useCallback(() => {
+    console.log('edit');
+  }, []);
+
+  const handleRemove = useCallback(() => {
+    const id = trip.eventId;
+
+    fetch(`/api/trip/${id}`, {
+      method: 'DELETE',
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log('Trip removed successfully');
+          onTripDelete(trip);
+        } else {
+          console.log('Failed to remove trip');
+        }
+      })
+      .catch((error) => {
+        console.log('An error occurred while removing the trip:', error);
+      });
+  }, [trip.eventId]);
+
   return (
     <div>
       <div
@@ -55,26 +79,32 @@ export default function Trip({ trip }) {
             justifyContent: 'flex-start',
             alignItems: 'center',
           }}>
-          <div class="dots">
+          <div className="dots">
             <div></div>
           </div>
-          <button
-            onClick={handleClick}
-            type="button"
-            className="btn btn-primary"
-            style={{
-              backgroundColor: '#C3CDE6',
-              color: 'white',
-              borderRadius: '50%',
-              border: 'none',
-              width: '40px',
-              height: '40px',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <i className="bi bi-dash" style={{ fontSize: '24px' }}></i>
-          </button>
+          <div className="dropdown">
+            <button
+              className="btn btn-secondary dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              style={{
+                backgroundColor: '#C3CDE6',
+                border: 'none',
+              }}></button>
+            <ul className="dropdown-menu">
+              <li>
+                <a className="dropdown-item" href="#" onClick={handleEdit}>
+                  Edit
+                </a>
+              </li>
+              <li>
+                <a className="dropdown-item" href="#" onClick={handleRemove}>
+                  Remove
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
