@@ -13,6 +13,14 @@ export default function Trips({ authUser }) {
     }
 
     fetchTrips();
-  });
-  return trips.map((trip) => <Trip trip={trip} />);
+  }, []);
+
+  const onHandleTripDelete = (tripToDelete) => {
+    const updatedTrips = trips.filter((trip) => trip.id !== tripToDelete.id);
+    setTrips(updatedTrips);
+  };
+
+  return trips.map((trip) => (
+    <Trip onTripDelete={onHandleTripDelete} trip={trip} />
+  ));
 }
