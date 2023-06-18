@@ -11,7 +11,7 @@ export default function Tabs() {
             textAlign: 'center',
             border: '1px solid #ccc',
             padding: '10px',
-            fontSize: '24px',
+            fontSize: '20px',
             fontFamily: 'Poppins, sans-serif',
             borderRadius: '10px',
             color: 'black',
@@ -26,7 +26,7 @@ export default function Tabs() {
             textAlign: 'center',
             border: '1px solid #ccc',
             padding: '10px',
-            fontSize: '24px',
+            fontSize: '20px',
             fontFamily: 'Poppins, sans-serif',
             borderRadius: '10px',
           }}>
@@ -42,7 +42,7 @@ export default function Tabs() {
             textAlign: 'center',
             border: '1px solid #ccc',
             padding: '10px',
-            fontSize: '24px',
+            fontSize: '20px',
             fontFamily: 'Poppins, sans-serif',
             borderRadius: '10px',
           }}>
@@ -58,7 +58,7 @@ export default function Tabs() {
             textAlign: 'center',
             border: '1px solid #ccc',
             padding: '10px',
-            fontSize: '24px',
+            fontSize: '20px',
             fontFamily: 'Poppins, sans-serif',
             borderRadius: '10px',
           }}>

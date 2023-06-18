@@ -16,7 +16,9 @@ export default function Trips({ authUser }) {
   }, []);
 
   const onHandleTripDelete = (tripToDelete) => {
-    const updatedTrips = trips.filter((trip) => trip.id !== tripToDelete.id);
+    const updatedTrips = trips.filter(
+      (trip) => trip.eventId !== tripToDelete.eventId
+    );
     setTrips(updatedTrips);
   };
 

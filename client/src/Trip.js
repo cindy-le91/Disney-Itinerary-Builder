@@ -63,6 +63,7 @@ export default function Trip({ trip, onTripDelete, onTripUpdate }) {
 
   const handleRemove = useCallback(() => {
     const id = trip.eventId;
+    onTripDelete(trip);
 
     fetch(`/api/trip/${id}`, {
       method: 'DELETE',
@@ -104,20 +105,30 @@ export default function Trip({ trip, onTripDelete, onTripUpdate }) {
           className="col-8"
           style={{
             display: 'flex',
-            justifyContent: 'flex-start',
+            justifyContent: 'space-between',
             alignItems: 'center',
-            fontSize: '20px',
+            fontSize: '16px',
           }}>
-          {trip.eventName}
-          <br></br>
-
+          <div style={{ flex: 1, whiteSpace: 'pre-wrap' }}>
+            {trip.eventName}
+          </div>
           {isEdit && (
             <TimePicker
               getSelectedTime={(startTime) => handleSelectedTime(startTime)}
             />
           )}
-          {!isEdit && <span>{convertTimeFormat(trip.startTime)}</span>}
+          {!isEdit && (
+            <div
+              style={{
+                flexShrink: 0,
+                whiteSpace: 'nowrap',
+                textAlign: 'right',
+              }}>
+              {convertTimeFormat(trip.startTime)}
+            </div>
+          )}
         </div>
+
         <div
           className="col-2"
           style={{
@@ -154,7 +165,19 @@ export default function Trip({ trip, onTripDelete, onTripUpdate }) {
             </div>
           )}
           {isEdit && (
-            <button onClick={() => handleEdit(selectedTime)}>Save</button>
+            <button
+              onClick={() => handleEdit(selectedTime)}
+              style={{
+                backgroundColor: '#C3CDE6',
+                color: 'white',
+                fontSize: '16px',
+                padding: '6px 14px',
+                border: 'none',
+                borderRadius: '4px',
+                cursor: 'pointer',
+              }}>
+              Save
+            </button>
           )}
         </div>
       </div>

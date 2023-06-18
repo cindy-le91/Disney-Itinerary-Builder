@@ -45,7 +45,6 @@ function TimePicker({ getSelectedTime }) {
         <option value="23:00:00">11:00 PM</option>
         <option value="23:30:00">11:30 PM</option>
       </select>
-      <p>Selected Time: {selectedHour}</p>
     </div>
   );
 }

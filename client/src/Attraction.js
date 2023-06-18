@@ -30,7 +30,7 @@ export default function Attraction(props) {
             display: 'flex',
             justifyContent: 'flex-start',
             alignItems: 'center',
-            fontSize: '20px',
+            fontSize: '16px',
           }}>
           {attraction.name}
         </div>

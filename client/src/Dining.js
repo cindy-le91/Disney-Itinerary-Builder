@@ -31,7 +31,7 @@ export default function Dining(props) {
             display: 'flex',
             justifyContent: 'flex-start',
             alignItems: 'center',
-            fontSize: '20px',
+            fontSize: '16px',
           }}>
           {dining.name}
         </div>
