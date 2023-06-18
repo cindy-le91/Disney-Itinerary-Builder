@@ -1,8 +1,12 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
+import TimePicker from './TimePicker.js';
+export default function Trip({ trip, onTripDelete, onTripUpdate }) {
+  const [isEdit, setIsEdit] = useState(false);
+  const [selectedTime, setSelectedTime] = useState();
 
-export default function Trip({ trip, onTripDelete }) {
   function convertTimeFormat(timeString) {
     const [hours, minutes, seconds] = timeString.split(':');
+
     const date = new Date();
     date.setHours(hours);
     date.setMinutes(minutes);
@@ -21,9 +25,41 @@ export default function Trip({ trip, onTripDelete }) {
     console.log('test');
   };
 
-  const handleEdit = useCallback(() => {
-    console.log('edit');
-  }, []);
+  const enableEdit = () => {
+    setIsEdit(true);
+  };
+
+  const disableEdit = () => {
+    setIsEdit(false);
+  };
+
+  const handleEdit = useCallback(
+    (time) => {
+      const id = trip.eventId;
+      const payload = { startTime: time };
+
+      fetch(`/api/trip/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify(payload),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(async (response) => {
+          if (response.ok) {
+            const updatedEvent = await response.json();
+            onTripUpdate(updatedEvent);
+            disableEdit();
+          } else {
+            console.log('Failed to edit trip');
+          }
+        })
+        .catch((error) => {
+          console.log('An error occurred while editing the trip:', error);
+        });
+    },
+    [trip.eventId]
+  );
 
   const handleRemove = useCallback(() => {
     const id = trip.eventId;
@@ -43,6 +79,10 @@ export default function Trip({ trip, onTripDelete }) {
         console.log('An error occurred while removing the trip:', error);
       });
   }, [trip.eventId]);
+
+  const handleSelectedTime = (startTime) => {
+    setSelectedTime(startTime);
+  };
 
   return (
     <div>
@@ -70,7 +110,13 @@ export default function Trip({ trip, onTripDelete }) {
           }}>
           {trip.eventName}
           <br></br>
-          {convertTimeFormat(trip.startTime)}
+
+          {isEdit && (
+            <TimePicker
+              getSelectedTime={(startTime) => handleSelectedTime(startTime)}
+            />
+          )}
+          {!isEdit && <span>{convertTimeFormat(trip.startTime)}</span>}
         </div>
         <div
           className="col-2"
@@ -82,29 +128,34 @@ export default function Trip({ trip, onTripDelete }) {
           <div className="dots">
             <div></div>
           </div>
-          <div className="dropdown">
-            <button
-              className="btn btn-secondary dropdown-toggle"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              style={{
-                backgroundColor: '#C3CDE6',
-                border: 'none',
-              }}></button>
-            <ul className="dropdown-menu">
-              <li>
-                <a className="dropdown-item" href="#" onClick={handleEdit}>
-                  Edit
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="#" onClick={handleRemove}>
-                  Remove
-                </a>
-              </li>
-            </ul>
-          </div>
+          {!isEdit && (
+            <div className="dropdown">
+              <button
+                className="btn btn-secondary dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style={{
+                  backgroundColor: '#C3CDE6',
+                  border: 'none',
+                }}></button>
+              <ul className="dropdown-menu">
+                <li>
+                  <a className="dropdown-item" href="#" onClick={enableEdit}>
+                    Edit
+                  </a>
+                </li>
+                <li>
+                  <a className="dropdown-item" href="#" onClick={handleRemove}>
+                    Remove
+                  </a>
+                </li>
+              </ul>
+            </div>
+          )}
+          {isEdit && (
+            <button onClick={() => handleEdit(selectedTime)}>Save</button>
+          )}
         </div>
       </div>
     </div>

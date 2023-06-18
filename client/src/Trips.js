@@ -20,7 +20,19 @@ export default function Trips({ authUser }) {
     setTrips(updatedTrips);
   };
 
+  const onHandleTripUpdate = (tripToUpdate) => {
+    tripToUpdate = tripToUpdate.updatedEvent;
+    const updatedTrips = trips.map((trip) =>
+      trip.eventId === tripToUpdate.eventId ? tripToUpdate : trip
+    );
+    setTrips(updatedTrips);
+  };
+
   return trips.map((trip) => (
-    <Trip onTripDelete={onHandleTripDelete} trip={trip} />
+    <Trip
+      onTripDelete={onHandleTripDelete}
+      onTripUpdate={onHandleTripUpdate}
+      trip={trip}
+    />
   ));
 }

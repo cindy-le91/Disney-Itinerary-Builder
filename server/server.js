@@ -143,7 +143,7 @@ app.delete('/api/trip/:id', async (req, res) => {
 });
 
 app.put('/api/trip/:id', async (req, res) => {
-  const { startTime } = req.query;
+  const { startTime } = req.body;
   const { id } = req.params;
   const sql = `
     UPDATE "Events" SET "startTime" = $1 WHERE "eventId" = $2 RETURNING *;
