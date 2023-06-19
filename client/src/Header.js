@@ -9,11 +9,7 @@ export default function Header({ authUser }) {
     try {
       sessionStorage.removeItem('token');
       window.location.href = '/sign-in';
-
-      // Perform any additional client-side cleanup or redirection if needed
-    } catch (error) {
-      // Handle error, e.g., show an error message
-    }
+    } catch (error) {}
   };
 
   const handleLogin = async () => {
@@ -21,8 +17,13 @@ export default function Header({ authUser }) {
   };
 
   return (
-    <div style={{ backgroundColor: '#C3CDE6' }}>
-      <div>
+    <div>
+      <div
+        style={{
+          backgroundColor: '#C3CDE6',
+          display: 'flex',
+          justifyContent: 'center',
+        }}>
         <nav class="navbar navbar-expand-lg">
           <div class="container-fluid">
             <a
@@ -32,9 +33,6 @@ export default function Header({ authUser }) {
                 backgroundColor: '#C3CDE6',
                 fontFamily: 'Sacramento',
                 fontSize: '40px',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
               }}>
               {' '}
               Disney Itinerary Builder
@@ -47,7 +45,7 @@ export default function Header({ authUser }) {
               aria-controls="navbarSupportedContent"
               aria-expanded="false"
               aria-label="Toggle navigation"
-              style={{ backgroundColor: '#C3CDE6', fontFamily: 'Sacramento' }}>
+              style={{ justifyContent: 'right' }}>
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -67,7 +65,8 @@ export default function Header({ authUser }) {
                       class="nav-link active"
                       aria-current="page"
                       href="#"
-                      onClick={handleLogout}>
+                      onClick={handleLogout}
+                      style={{ float: 'right' }}>
                       Logout
                     </a>
                   )}

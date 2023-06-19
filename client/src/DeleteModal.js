@@ -2,11 +2,11 @@ import React from 'react';
 
 const Modal = ({ closeModal, visible }) => {
   const handleModalClose = () => {
-    closeModal(); // Call the closeModal function passed as a prop
+    closeModal();
   };
 
   const modalStyle = {
-    display: visible ? 'block' : 'none', // Apply "display: block" when visible is true
+    display: visible ? 'block' : 'none',
   };
 
   return (

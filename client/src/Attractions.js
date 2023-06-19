@@ -7,61 +7,62 @@ export default function Attractions({ authUser }) {
   const [selectedAttraction, setSelectedAttraction] = useState(null);
   const [selectedTime, setSelectedTime] = useState();
 
-  useEffect(() => {
-    const locationMap = {
-      matterhornbobsleds: 'Fantasyland',
-      waltdisneysenchantedtikiroom: 'Adventureland',
-      pirateslairontomsawyerisland: 'Frontierland',
-      splashmountain: 'Critter Country',
-      frontierlandshootinexposition: 'Frontierland',
-      rogerrabbitscartoonspin: "Mickey's Toontown",
-      millenniumfalconsmugglersrun: "Star Wars: Galaxy's Edge",
-      bigthundermountainrailroad: 'Frontierland',
-      starwarsriseoftheresistance: "Star Wars: Galaxy's Edge",
-      astroorbitor: 'Tomorrowland',
-      caseyjrcircustrain: 'Fantasyland',
-      chipndaletreehouse: "Mickey's Toontown",
-      findingnemosubmarinevoyage: 'Tomorrowland',
-      disneylandmonorail: 'Tomorrowland',
-      dumbotheflyingelephant: 'Fantasyland',
-      junglecruise: 'Adventureland',
-      mainstreetcinema: 'Main Street, U.S.A.',
-      madteaparty: 'Fantasyland',
-      marktwainriverboat: 'Frontierland',
-      peterpansflight: 'Fantasyland',
-      pinocchiosdaringjourney: 'Fantasyland',
-      piratesofthecaribbean: 'New Orleans Square',
-      sailingshipcolumbia: 'Frontierland',
-      sleepingbeautycastlewalkthrough: 'Fantasyland',
-      snowwhitesenchantedwish: 'Fantasyland',
-      storybooklandcanalboats: 'Fantasyland',
-      tarzanstreehouse: 'Adventureland',
-      themanyadventuresofwinniethepooh: 'Critter Country',
-      thedisneylandstorypresentinggreatmomentswithmrlincoln:
-        'Main Street, U.S.A.',
-      mainstreetvehicles: 'Main Street, U.S.A.',
-      buzzlightyearastroblasters: 'Tomorrowland',
-      aliceinwonderland: 'Fantasyland',
-      fortunetellers: 'Main Street, U.S.A. - New Orleans Square',
-      autopia: 'Tomorrowland',
-      indianajonesadventure: 'Adventureland',
-      davycrockettsexplorercanoes: 'Critter Country',
-      thedisneygallery: 'Main Street, U.S.A.',
-      kingarthurcarrousel: 'Fantasyland',
-      minnieshouse: "Mickey's Toontown",
-      mrtoadswildride: 'Fantasyland',
-      itsasmallworld: 'Fantasyland',
-      disneylandrailroad: 'Disneyland Park',
-      starwarslaunchbay: 'Tomorrowland',
-      startourstheadventurescontinue: 'Tomorrowland',
-      starwarsgalaxysedge: "Star Wars: Galaxy's Edge",
-      hauntedmansion: 'New Orleans Square',
-      spacemountain: 'Tomorrowland',
-      gadgetsgocoaster: "Mickey's Toontown",
-      goofysplayhouse: "Mickey's Toontown",
-      donaldsboat: "Mickey's Toontown",
-    };
+  const locationMap = {
+    matterhornbobsleds: 'Fantasyland',
+    waltdisneysenchantedtikiroom: 'Adventureland',
+    pirateslairontomsawyerisland: 'Frontierland',
+    splashmountain: 'Critter Country',
+    null: "Mickey's Toontown",
+    frontierlandshootinexposition: 'Frontierland',
+    rogerrabbitscartoonspin: "Mickey's Toontown",
+    millenniumfalconsmugglersrun: "Star Wars: Galaxy's Edge",
+    bigthundermountainrailroad: 'Frontierland',
+    starwarsriseoftheresistance: "Star Wars: Galaxy's Edge",
+    astroorbitor: 'Tomorrowland',
+    caseyjrcircustrain: 'Fantasyland',
+    chipndaletreehouse: "Mickey's Toontown",
+    findingnemosubmarinevoyage: 'Tomorrowland',
+    disneylandmonorail: 'Tomorrowland',
+    dumbotheflyingelephant: 'Fantasyland',
+    junglecruise: 'Adventureland',
+    mainstreetcinema: 'Main Street, U.S.A.',
+    madteaparty: 'Fantasyland',
+    marktwainriverboat: 'Frontierland',
+    peterpansflight: 'Fantasyland',
+    pinocchiosdaringjourney: 'Fantasyland',
+    piratesofthecaribbean: 'New Orleans Square',
+    sailingshipcolumbia: 'Frontierland',
+    sleepingbeautycastlewalkthrough: 'Fantasyland',
+    snowwhitesenchantedwish: 'Fantasyland',
+    storybooklandcanalboats: 'Fantasyland',
+    tarzanstreehouse: 'Adventureland',
+    themanyadventuresofwinniethepooh: 'Critter Country',
+    thedisneylandstorypresentinggreatmomentswithmrlincoln:
+      'Main Street, U.S.A.',
+    mainstreetvehicles: 'Main Street, U.S.A.',
+    buzzlightyearastroblasters: 'Tomorrowland',
+    aliceinwonderland: 'Fantasyland',
+    fortunetellers: 'Main Street, U.S.A.',
+    autopia: 'Tomorrowland',
+    indianajonesadventure: 'Adventureland',
+    davycrockettsexplorercanoes: 'Critter Country',
+    thedisneygallery: 'Main Street, U.S.A.',
+    kingarthurcarrousel: 'Fantasyland',
+    minnieshouse: "Mickey's Toontown",
+    mrtoadswildride: 'Fantasyland',
+    itsasmallworld: 'Fantasyland',
+    disneylandrailroad: 'Disneyland Park',
+    starwarslaunchbay: 'Tomorrowland',
+    startourstheadventurescontinue: 'Tomorrowland',
+    starwarsgalaxysedge: "Star Wars: Galaxy's Edge",
+    hauntedmansion: 'New Orleans Square',
+    spacemountain: 'Tomorrowland',
+    gadgetsgocoaster: "Mickey's Toontown",
+    goofysplayhouse: "Mickey's Toontown",
+    donaldsboat: "Mickey's Toontown",
+  };
 
+  useEffect(() => {
     async function fetchAttractions() {
       const disneyLandResortId = '7340550b-c14d-4def-80bb-acdb51d49a66';
 
@@ -80,8 +81,9 @@ export default function Attractions({ authUser }) {
     fetchAttractions();
   }, []);
 
-  function findLocation() {
-    // Implement the logic to find the location of the attraction
+  function findLocation(attraction) {
+    console.log(locationMap[attraction.slug]);
+    return locationMap[attraction.slug];
   }
 
   const openModal = (data) => {
@@ -90,7 +92,7 @@ export default function Attractions({ authUser }) {
   };
 
   const addToTrip = async () => {
-    const token = sessionStorage.getItem('token'); // Retrieve the bearer token from session storage
+    const token = sessionStorage.getItem('token');
     const modal = document.getElementById('myModal');
     modal.style.display = 'none';
     try {
@@ -99,13 +101,12 @@ export default function Attractions({ authUser }) {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
-          // Add any additional headers if required
         },
         body: JSON.stringify({
           userId: authUser.userId,
           eventName: selectedAttraction.name,
           startTime: selectedTime,
-        }), // Convert data to JSON format
+        }),
       });
 
       if (response.ok) {
@@ -168,7 +169,7 @@ export default function Attractions({ authUser }) {
         <Attraction
           key={attraction.id}
           attraction={attraction}
-          location={findLocation()}
+          location={findLocation(attraction)}
           onSelectAttraction={handleSelectedAttraction}
           openModal={openModal}
         />

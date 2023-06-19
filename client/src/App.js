@@ -10,7 +10,7 @@ import Trips from './Trips.js';
 import './App.css';
 
 const App = () => {
-  const [authUser, setAuthUser] = useState(null); // State to store the signed-in user
+  const [authUser, setAuthUser] = useState(null);
 
   useEffect(() => {
     async function checkForLoggedInUser() {

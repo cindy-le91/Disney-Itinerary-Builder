@@ -21,7 +21,6 @@ function SignIn({ onLogin }) {
       }
 
       const { token, user } = await response.json();
-      // Handle successful sign-in, e.g., set token in local storage, update state, etc.
       sessionStorage.setItem('token', token);
       onLogin(user);
       navigate('/');

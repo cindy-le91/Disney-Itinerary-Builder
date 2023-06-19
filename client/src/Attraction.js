@@ -1,7 +1,17 @@
 import { useEffect } from 'react';
+import CinderellaCastle from './disneyicons/WDWicon_CinderellaCastle.svg';
+import MillenniumFalcon from './disneyicons/WDWicon_MillenniumFalcon.svg';
+import ExpeditionEverest from './disneyicons/WDWicon_ExpeditionEverest.svg';
+import SpaceMountain from './disneyicons/WDWicon_SpaceMountain.svg';
+import Entrance from './disneyicons/WDWicon_MagicKingdomEntrance.svg';
+import Tree from './disneyicons/WDWicon_TreeofLife.svg';
+import LogRide from './disneyicons/DLPicon_SplashMountain.svg';
+import MickeyIceCream from './disneyicons/DLPicon_MickeyIceCream.svg';
+import TowerofTerror from './disneyicons/WDWicon_TowerofTerror.svg';
+import Monorail from './disneyicons/WDWicon_Monorail.svg';
 
 export default function Attraction(props) {
-  const { attraction, openModal, onSelectAttraction } = props;
+  const { attraction, openModal, onSelectAttraction, location } = props;
 
   function handleClick() {
     openModal();
@@ -22,17 +32,58 @@ export default function Attraction(props) {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <i className="bi bi-emoji-smile"></i>
+          {location === 'Fantasyland' && (
+            <img
+              src={CinderellaCastle}
+              style={{ width: '60px', height: '60px' }}></img>
+          )}
+          {location === "Star Wars: Galaxy's Edge" && (
+            <img
+              src={MillenniumFalcon}
+              style={{ width: '60px', height: '60px' }}></img>
+          )}
+          {location === 'Frontierland' && (
+            <img
+              src={ExpeditionEverest}
+              style={{ width: '60px', height: '60px' }}></img>
+          )}
+          {location === 'Tomorrowland' && (
+            <img
+              src={SpaceMountain}
+              style={{ width: '60px', height: '60px' }}></img>
+          )}
+          {location === 'Main Street, U.S.A.' && (
+            <img src={Entrance} style={{ width: '60px', height: '60px' }}></img>
+          )}
+          {location === 'Adventureland' && (
+            <img src={Tree} style={{ width: '60px', height: '60px' }}></img>
+          )}
+          {location === 'Critter Country' && (
+            <img src={LogRide} style={{ width: '60px', height: '60px' }}></img>
+          )}
+          {location === "Mickey's Toontown" && (
+            <img
+              src={MickeyIceCream}
+              style={{ width: '60px', height: '60px' }}></img>
+          )}
+          {location === 'New Orleans Square' && (
+            <img
+              src={TowerofTerror}
+              style={{ width: '60px', height: '60px' }}></img>
+          )}
+          {location === 'Disneyland Park' && (
+            <img src={Monorail} style={{ width: '60px', height: '60px' }}></img>
+          )}
         </div>
         <div
           className="col-8"
           style={{
-            display: 'flex',
-            justifyContent: 'flex-start',
-            alignItems: 'center',
-            fontSize: '16px',
+            fontSize: '18px',
+            paddingTop: '20px',
           }}>
           {attraction.name}
+          <br />
+          <div style={{ fontSize: '16px', paddingTop: '5px' }}>{location}</div>
         </div>
         <div
           className="col-2"
