@@ -28,7 +28,6 @@ function SignIn({ onLogin }) {
 
       console.log('Sign-in successful:', token, user);
     } catch (error) {
-      // Handle error during sign-in
       console.error('Error signing in:', error);
     }
   };
@@ -39,6 +38,7 @@ function SignIn({ onLogin }) {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        gap: '10px', // Adds space between lines
       }}>
       <h2>Sign In</h2>
       <form onSubmit={(e) => e.preventDefault()}>
@@ -58,18 +58,28 @@ function SignIn({ onLogin }) {
           onChange={(e) => setPassword(e.target.value)}
         />
         <br />
-      </form>
-      <div>
-        <button
-          type="submit"
-          className="btn btn-primary"
-          onClick={handleSignIn}>
-          Sign In
-        </button>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            marginBottom: '10px',
+          }}>
+          <button
+            type="submit"
+            className="btn btn-primary"
+            onClick={handleSignIn}
+            style={{
+              backgroundColor: '#C3CDE6',
+              color: 'white',
+              border: 'none',
+            }}>
+            Sign In
+          </button>
+        </div>
         <div>
           Don't have an account? <a href="/sign-up">Sign Up</a>
         </div>
-      </div>
+      </form>
     </div>
   );
 }

@@ -64,22 +64,7 @@ export default function Trip({ trip, onTripDelete, onTripUpdate }) {
   const handleRemove = useCallback(() => {
     const id = trip.eventId;
     onTripDelete(trip);
-
-    fetch(`/api/trip/${id}`, {
-      method: 'DELETE',
-    })
-      .then((response) => {
-        if (response.ok) {
-          console.log('Trip removed successfully');
-          onTripDelete(trip);
-        } else {
-          console.log('Failed to remove trip');
-        }
-      })
-      .catch((error) => {
-        console.log('An error occurred while removing the trip:', error);
-      });
-  }, [trip.eventId]);
+  });
 
   const handleSelectedTime = (startTime) => {
     setSelectedTime(startTime);

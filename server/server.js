@@ -175,6 +175,31 @@ app.get('/api/hello', (req, res) => {
   res.json({ message: 'Hello, World!' });
 });
 
+app.get('/api/get-logged-in-user', (req, res) => {
+  const token = req.headers.authorization;
+  console.log(token);
+
+  // Verify the token
+  jwt.verify(token, process.env.TOKEN_SECRET, async (err, decoded) => {
+    if (err) {
+      // Handle invalid or expired token
+      return res.status(401).json({ error: 'Invalid or expired token' });
+    }
+
+    // Token is valid, retrieve the user data based on the decoded token
+    const userId = decoded.userId;
+
+    // TODO: Retrieve user data from your data store using the userId
+    const sql = 'select * from "Users" where "userId" = $1';
+    const params = [userId];
+
+    const results = await db.query(sql, params);
+    const user = results.rows[0];
+
+    res.json(user);
+  });
+});
+
 /**
  * Serves React's index.html if no api route matches.
  *

@@ -13,8 +13,15 @@ const App = () => {
   const [authUser, setAuthUser] = useState(null); // State to store the signed-in user
 
   useEffect(() => {
-    function checkForLoggedInUser() {
-      if (!sessionStorage.getItem('token')) {
+    async function checkForLoggedInUser() {
+      if (sessionStorage.getItem('token')) {
+        const token = sessionStorage.getItem('token');
+        const response = await fetch('/api/get-logged-in-user', {
+          headers: {
+            Authorization: token,
+          },
+        });
+        setAuthUser(await response.json());
       }
     }
 
@@ -31,7 +38,7 @@ const App = () => {
 
   return (
     <Router>
-      <Header />
+      <Header authUser={authUser} />
       <div className="container" style={containerStyle}>
         <Routes>
           <Route
