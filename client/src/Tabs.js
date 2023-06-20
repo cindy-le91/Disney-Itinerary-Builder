@@ -38,7 +38,7 @@ export default function Tabs() {
             style={{
               width: '40px',
               height: '40px',
-              marginRight: '20px',
+              marginRight: '10px',
             }}></img>
           <Link
             to="/attractions"
@@ -62,7 +62,7 @@ export default function Tabs() {
             style={{
               width: '40px',
               height: '40px',
-              marginRight: '20px',
+              marginRight: '10px',
             }}></img>
           <Link
             to="/dinings"

@@ -82,13 +82,13 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
 
 app.post('/api/trip', authorizationMiddleware, async (req, res, next) => {
   try {
-    const { userId, eventName, startTime } = req.body;
+    const { userId, eventName, startTime, eventSlug } = req.body;
 
     const sql = `
-      insert into "Events" ("userId", "eventName", "startTime", date) VALUES ($1, $2, $3, NOW())
+      insert into "Events" ("userId", "eventName", "startTime", "eventSlug", date) VALUES ($1, $2, $3, $4, NOW())
     `;
 
-    const data = [userId, eventName, startTime];
+    const data = [userId, eventName, startTime, eventSlug];
 
     const response = db.query(sql, data);
     console.log(response);

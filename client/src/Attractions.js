@@ -45,7 +45,6 @@ export default function Attractions({ authUser }) {
     fortunetellers: 'Main Street, U.S.A.',
     autopia: 'Tomorrowland',
     indianajonesadventure: 'Adventureland',
-    davycrockettsexplorercanoes: 'Critter Country',
     thedisneygallery: 'Main Street, U.S.A.',
     kingarthurcarrousel: 'Fantasyland',
     minnieshouse: "Mickey's Toontown",
@@ -106,6 +105,7 @@ export default function Attractions({ authUser }) {
           userId: authUser.userId,
           eventName: selectedAttraction.name,
           startTime: selectedTime,
+          eventSlug: selectedAttraction.slug,
         }),
       });
 
