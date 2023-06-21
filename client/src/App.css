@@ -1,6 +1,6 @@
-.App {
+/* .App {
   text-align: center;
-}
+} */
 
 .App-logo {
   height: 40vmin;
@@ -36,4 +36,10 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+html {
+  background-image: url('./backgroundimg/PngItem_1784563.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }

@@ -15,7 +15,7 @@ const Map = () => {
     { null: { x: 1170, y: 170 } },
     { frontierlandshootinexposition: { x: 850, y: 1020 } },
     { rogerrabbitscartoonspin: { x: 1250, y: 220 } },
-    { millenniumfalconsmugglersrun: { x: 490, y: 270 } },
+    { millenniumfalconsmugglersrun: { x: 400, y: 270 } },
     { bigthundermountainrailroad: { x: 740, y: 800 } },
     { starwarsriseoftheresistance: { x: 60, y: 570 } },
     { astroorbitor: { x: 1190, y: 1070 } },
@@ -93,7 +93,7 @@ const Map = () => {
         <img
           src={mapImage}
           alt="Map"
-          style={{ width: '90%', height: 'auto' }}
+          style={{ width: '1290px', height: 'auto' }}
         />
         {renderMarkers()}
       </div>

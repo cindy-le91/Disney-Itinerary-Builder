@@ -81,7 +81,6 @@ export default function Attractions({ authUser }) {
   }, []);
 
   function findLocation(attraction) {
-    console.log(locationMap[attraction.slug]);
     return locationMap[attraction.slug];
   }
 

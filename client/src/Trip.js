@@ -1,6 +1,17 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import TimePicker from './TimePicker.js';
-export default function Trip({ trip, onTripDelete, onTripUpdate }) {
+import CinderellaCastle from './disneyicons/WDWicon_CinderellaCastle.svg';
+import MillenniumFalcon from './disneyicons/WDWicon_MillenniumFalcon.svg';
+import ExpeditionEverest from './disneyicons/WDWicon_ExpeditionEverest.svg';
+import SpaceMountain from './disneyicons/WDWicon_SpaceMountain.svg';
+import Entrance from './disneyicons/WDWicon_MagicKingdomEntrance.svg';
+import Tree from './disneyicons/WDWicon_TreeofLife.svg';
+import LogRide from './disneyicons/DLPicon_SplashMountain.svg';
+import MickeyIceCream from './disneyicons/DLPicon_MickeyIceCream.svg';
+import TowerofTerror from './disneyicons/WDWicon_TowerofTerror.svg';
+import Monorail from './disneyicons/WDWicon_Monorail.svg';
+
+export default function Trip({ trip, onTripDelete, onTripUpdate, location }) {
   const [isEdit, setIsEdit] = useState(false);
   const [selectedTime, setSelectedTime] = useState();
 
@@ -20,10 +31,6 @@ export default function Trip({ trip, onTripDelete, onTripUpdate }) {
 
     return formattedTime;
   }
-
-  const handleClick = () => {
-    console.log('test');
-  };
 
   const enableEdit = () => {
     setIsEdit(true);
@@ -84,7 +91,48 @@ export default function Trip({ trip, onTripDelete, onTripUpdate }) {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <i className="bi bi-emoji-smile"></i>
+          {location === 'Fantasyland' && (
+            <img
+              src={CinderellaCastle}
+              style={{ width: '60px', height: '60px' }}></img>
+          )}
+          {location === "Star Wars: Galaxy's Edge" && (
+            <img
+              src={MillenniumFalcon}
+              style={{ width: '60px', height: '60px' }}></img>
+          )}
+          {location === 'Frontierland' && (
+            <img
+              src={ExpeditionEverest}
+              style={{ width: '60px', height: '60px' }}></img>
+          )}
+          {location === 'Tomorrowland' && (
+            <img
+              src={SpaceMountain}
+              style={{ width: '60px', height: '60px' }}></img>
+          )}
+          {location === 'Main Street, U.S.A.' && (
+            <img src={Entrance} style={{ width: '60px', height: '60px' }}></img>
+          )}
+          {location === 'Adventureland' && (
+            <img src={Tree} style={{ width: '60px', height: '60px' }}></img>
+          )}
+          {location === 'Critter Country' && (
+            <img src={LogRide} style={{ width: '60px', height: '60px' }}></img>
+          )}
+          {location === "Mickey's Toontown" && (
+            <img
+              src={MickeyIceCream}
+              style={{ width: '60px', height: '60px' }}></img>
+          )}
+          {location === 'New Orleans Square' && (
+            <img
+              src={TowerofTerror}
+              style={{ width: '60px', height: '60px' }}></img>
+          )}
+          {location === 'Disneyland Park' && (
+            <img src={Monorail} style={{ width: '60px', height: '60px' }}></img>
+          )}
         </div>
         <div
           className="col-8"
@@ -92,10 +140,13 @@ export default function Trip({ trip, onTripDelete, onTripUpdate }) {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-            fontSize: '16px',
           }}>
-          <div style={{ flex: 1, whiteSpace: 'pre-wrap' }}>
+          <div style={{ flex: 1, whiteSpace: 'pre-wrap', fontSize: '18px' }}>
             {trip.eventName}
+            <br />
+            <div style={{ fontSize: '16px', paddingTop: '5px' }}>
+              {location}
+            </div>
           </div>
           {isEdit && (
             <TimePicker

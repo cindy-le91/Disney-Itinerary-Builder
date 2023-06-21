@@ -1,7 +1,12 @@
 import React from 'react';
 
-const Modal = ({ closeModal, visible }) => {
+const Modal = ({ closeModal, visible, selectedTrip, deleteTrip }) => {
   const handleModalClose = () => {
+    closeModal();
+  };
+
+  const onHandleConfirm = () => {
+    deleteTrip(selectedTrip);
     closeModal();
   };
 
@@ -35,6 +40,7 @@ const Modal = ({ closeModal, visible }) => {
             <button
               type="button"
               className="btn btn-primary"
+              onClick={onHandleConfirm}
               style={{ backgroundColor: '#FF8686', border: 'none' }}>
               Confirm
             </button>

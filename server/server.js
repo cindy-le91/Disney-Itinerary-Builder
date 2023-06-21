@@ -22,7 +22,6 @@ const reactStaticDir = new URL('../client/build', import.meta.url).pathname;
 const uploadsStaticDir = new URL('public', import.meta.url).pathname;
 
 app.use(express.static(reactStaticDir));
-// Static directory for file uploads server/public/
 app.use(express.static(uploadsStaticDir));
 app.use(express.json());
 
@@ -90,8 +89,7 @@ app.post('/api/trip', authorizationMiddleware, async (req, res, next) => {
 
     const data = [userId, eventName, startTime, eventSlug];
 
-    const response = db.query(sql, data);
-    console.log(response);
+    await db.query(sql, data);
 
     res.json({ message: 'success' }); // TODO send proper response
   } catch (err) {
