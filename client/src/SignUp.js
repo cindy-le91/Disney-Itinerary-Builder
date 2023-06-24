@@ -55,7 +55,11 @@ function SignUp() {
         />
         <br />
       </form>
-      <button type="submit" className="btn btn-primary" onClick={handleSignUp}>
+      <button
+        type="submit"
+        className="btn btn-primary"
+        onClick={handleSignUp}
+        style={{ backgroundColor: '#C3CDE6', color: 'white', border: 'none' }}>
         Sign Up
       </button>
     </div>

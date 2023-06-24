@@ -4,35 +4,41 @@ import TimePicker from './TimePicker.js';
 
 export default function Dinings({ authUser }) {
   const restaurants = [
-    { name: 'Alien Pizza Planet' },
-    { name: 'Bengal Barbecue' },
-    { name: 'Blue Bayou Restaurant' },
-    { name: 'Café Daisy' },
-    { name: 'Cafe Orleans' },
-    { name: 'Carnation Cafe' },
-    { name: 'Docking Bay 7 Food and Cargo' },
-    { name: 'Galactic Grill' },
-    { name: 'Gibson Girl Ice Cream Parlor' },
-    { name: 'The Golden Horseshoe' },
-    { name: 'Harbour Galley' },
-    { name: 'Hungry Bear Restaurant' },
-    { name: 'Jolly Holiday Bakery Cafe' },
-    { name: "Kat Saka's Kettle" },
-    { name: 'Market House' },
-    { name: "Maurice's Treats" },
-    { name: 'Milk Stand' },
-    { name: "Oga's Cantina" },
-    { name: 'Plaza Inn' },
-    { name: 'Rancho del Zocalo Restaurante' },
-    { name: 'Red Rose Taverne' },
-    { name: 'River Belle Terrace' },
-    { name: 'Ronto Roasters' },
-    { name: 'Royal Street Veranda' },
-    { name: 'Stage Door Café' },
-    { name: 'Tiki Juice Bar' },
-    { name: 'Tomorrowland Skyline Terrace' },
-    { name: 'The Tropical Hideaway' },
-    { name: 'Troubadour Tavern' },
+    { name: 'Alien Pizza Planet', location: 'Tomorrowland' },
+    { name: 'Bengal Barbecue', location: 'Adventureland' },
+    { name: 'Blue Bayou Restaurant', location: 'New Orleans Square' },
+    { name: 'Café Daisy', location: "Mickey's Toontown" },
+    { name: 'Café Orleans', location: 'New Orleans Square' },
+    { name: 'Carnation Café', location: 'Main Street, U.S.A.' },
+    {
+      name: 'Docking Bay 7 Food and Cargo',
+      location: "Star Wars: Galaxy's Edge",
+    },
+    { name: 'Eidelweiss Snacks', location: 'Fantasyland' },
+    { name: 'Galactic Grill', location: 'Tomorrowland' },
+    { name: 'Gibson Girl Ice Cream Parlor', location: 'Main Street, U.S.A.' },
+    { name: 'The Golden Horseshoe', location: 'Frontierland' },
+    { name: 'Good Boy! Grocers', location: "Mickey's Toontown" },
+    { name: 'Harbour Galley', location: 'Critter Country' },
+    { name: 'Hungry Bear Restaurant', location: 'Critter Country' },
+    { name: 'Jolly Holiday Bakery Cafe', location: 'Main Street, U.S.A.' },
+    { name: "Kat Saka's Kettle", location: "Star Wars: Galaxy's Edge" },
+    { name: 'Market House', location: 'Main Street, U.S.A.' },
+    { name: "Maurice's Treats", location: 'Fantasyland' },
+    { name: 'Milk Stand', location: "Star Wars: Galaxy's Edge" },
+    { name: "Oga's Cantina", location: "Star Wars: Galaxy's Edge" },
+    { name: 'Plaza Inn', location: 'Main Street, U.S.A.' },
+    { name: 'Rancho del Zocalo Restaurante', location: 'Frontierland' },
+    { name: 'Red Rose Taverne', location: 'Fantasyland' },
+    { name: 'River Belle Terrace', location: 'Frontierland' },
+    { name: 'Ronto Roasters', location: "Star Wars: Galaxy's Edge" },
+    { name: 'Royal Street Veranda', location: 'New Orleans Square' },
+    { name: 'Stage Door Café', location: 'Frontierland' },
+    { name: 'Tiki Juice Bar', location: 'Adventureland' },
+    { name: 'Tropical Imports', location: 'Adventureland' },
+    { name: 'Tomorrowland Skyline Terrace', location: 'Tomorrowland' },
+    { name: 'The Tropical Hideaway', location: 'Adventureland' },
+    { name: 'Troubadour Tavern', location: 'Fantasyland' },
   ];
 
   const [dinings, setDinings] = useState(restaurants);
@@ -52,7 +58,7 @@ export default function Dinings({ authUser }) {
         return x.entityType === 'RESTAURANT';
       });
 
-      setDinings([...dinings, ...restaurants]);
+      setDinings([...restaurants]);
     }
 
     fetchDining();
@@ -82,13 +88,12 @@ export default function Dinings({ authUser }) {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
-          // Add any additional headers if required
         },
         body: JSON.stringify({
           userId: authUser.userId,
           eventName: selectedAttraction.name,
           startTime: selectedTime,
-        }), // Convert data to JSON format
+        }),
       });
 
       if (response.ok) {
@@ -143,6 +148,7 @@ export default function Dinings({ authUser }) {
         <Dining
           dining={dining}
           openModal={openModal}
+          location={dining.location}
           onSelectAttraction={handleSelectedAttraction}
         />
       ))}

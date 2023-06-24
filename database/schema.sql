@@ -20,6 +20,7 @@ CREATE TABLE "public"."Events" (
 	"eventId" serial NOT NULL,
 	"userId" integer NOT NULL,
 	"eventName" TEXT NOT NULL,
+  "eventSlug" TEXT,
 	"diningId" integer,
 	"attractionId" integer,
 	"startTime" TIME NOT NULL,

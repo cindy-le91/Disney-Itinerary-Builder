@@ -6,15 +6,23 @@ import Header from './Header.js';
 import Attractions from './Attractions.js';
 import Dinings from './Dinings.js';
 import Trips from './Trips.js';
+import Map from './Map.js';
 
 import './App.css';
 
 const App = () => {
-  const [authUser, setAuthUser] = useState(null); // State to store the signed-in user
+  const [authUser, setAuthUser] = useState(null);
 
   useEffect(() => {
-    function checkForLoggedInUser() {
-      if (!sessionStorage.getItem('token')) {
+    async function checkForLoggedInUser() {
+      if (sessionStorage.getItem('token')) {
+        const token = sessionStorage.getItem('token');
+        const response = await fetch('/api/get-logged-in-user', {
+          headers: {
+            Authorization: token,
+          },
+        });
+        setAuthUser(await response.json());
       }
     }
 
@@ -31,7 +39,7 @@ const App = () => {
 
   return (
     <Router>
-      <Header />
+      <Header authUser={authUser} />
       <div className="container" style={containerStyle}>
         <Routes>
           <Route
@@ -42,6 +50,7 @@ const App = () => {
           <Route path="/dinings" element={<Dinings authUser={authUser} />} />
           <Route path="/sign-in" element={<SignIn onLogin={handleLogin} />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/map" element={<Map />} />
         </Routes>
       </div>
     </Router>

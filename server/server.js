@@ -22,7 +22,6 @@ const reactStaticDir = new URL('../client/build', import.meta.url).pathname;
 const uploadsStaticDir = new URL('public', import.meta.url).pathname;
 
 app.use(express.static(reactStaticDir));
-// Static directory for file uploads server/public/
 app.use(express.static(uploadsStaticDir));
 app.use(express.json());
 
@@ -82,16 +81,15 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
 
 app.post('/api/trip', authorizationMiddleware, async (req, res, next) => {
   try {
-    const { userId, eventName, startTime } = req.body;
+    const { userId, eventName, startTime, eventSlug } = req.body;
 
     const sql = `
-      insert into "Events" ("userId", "eventName", "startTime", date) VALUES ($1, $2, $3, NOW())
+      insert into "Events" ("userId", "eventName", "startTime", "eventSlug", date) VALUES ($1, $2, $3, $4, NOW())
     `;
 
-    const data = [userId, eventName, startTime];
+    const data = [userId, eventName, startTime, eventSlug];
 
-    const response = db.query(sql, data);
-    console.log(response);
+    await db.query(sql, data);
 
     res.json({ message: 'success' }); // TODO send proper response
   } catch (err) {
@@ -143,7 +141,7 @@ app.delete('/api/trip/:id', async (req, res) => {
 });
 
 app.put('/api/trip/:id', async (req, res) => {
-  const { startTime } = req.query;
+  const { startTime } = req.body;
   const { id } = req.params;
   const sql = `
     UPDATE "Events" SET "startTime" = $1 WHERE "eventId" = $2 RETURNING *;
@@ -173,6 +171,31 @@ app.put('/api/trip/:id', async (req, res) => {
 
 app.get('/api/hello', (req, res) => {
   res.json({ message: 'Hello, World!' });
+});
+
+app.get('/api/get-logged-in-user', (req, res) => {
+  const token = req.headers.authorization;
+  console.log(token);
+
+  // Verify the token
+  jwt.verify(token, process.env.TOKEN_SECRET, async (err, decoded) => {
+    if (err) {
+      // Handle invalid or expired token
+      return res.status(401).json({ error: 'Invalid or expired token' });
+    }
+
+    // Token is valid, retrieve the user data based on the decoded token
+    const userId = decoded.userId;
+
+    // TODO: Retrieve user data from your data store using the userId
+    const sql = 'select * from "Users" where "userId" = $1';
+    const params = [userId];
+
+    const results = await db.query(sql, params);
+    const user = results.rows[0];
+
+    res.json(user);
+  });
 });
 
 /**
