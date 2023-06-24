@@ -39,7 +39,7 @@ function SignIn({ onLogin }) {
         alignItems: 'center',
         gap: '10px', // Adds space between lines
       }}>
-      <h2>Sign In</h2>
+      <h2 style={{ paddingTop: '20px' }}>Sign In</h2>
       <form onSubmit={(e) => e.preventDefault()}>
         <input
           placeholder="Username"
@@ -75,7 +75,7 @@ function SignIn({ onLogin }) {
             Sign In
           </button>
         </div>
-        <div>
+        <div style={{ paddingTop: '10px' }}>
           Don't have an account? <a href="/sign-up">Sign Up</a>
         </div>
       </form>

@@ -99,17 +99,16 @@ export default function Trips({ authUser }) {
 
   useEffect(() => {
     async function fetchTrips() {
-      //fetch trip from db with userId
       if (!authUser) {
         return;
       }
       const response = await fetch(`/api/trip?userId=${authUser.userId}`);
-      const trips = await response.json(); // convert to JSON
-      setTrips(trips); //save the trip to component with setTrips
+      const trips = await response.json();
+      setTrips(trips);
     }
 
     fetchTrips();
-  }, []);
+  }, [authUser]);
 
   function findLocation(trip) {
     let location = locationMap[trip.eventSlug];
@@ -118,7 +117,9 @@ export default function Trips({ authUser }) {
         return restaurant.name === trip.eventName;
       });
 
-      location = restaurant.location;
+      if (restaurant) {
+        location = restaurant.location;
+      }
     }
 
     return location;
@@ -175,7 +176,6 @@ export default function Trips({ authUser }) {
 
   return (
     <>
-      {/* Render the modal component when showModal is true */}
       {showModal && (
         <DeleteModal
           deleteTrip={deleteTrip}
@@ -185,18 +185,14 @@ export default function Trips({ authUser }) {
         />
       )}
 
-      {trips.map(
-        (
-          trip // mapping through trips(events) and creating a list of trip components, passing in the trip data to component
-        ) => (
-          <Trip
-            onTripDelete={onHandleTripDelete}
-            onTripUpdate={onHandleTripUpdate}
-            location={findLocation(trip)}
-            trip={trip}
-          />
-        )
-      )}
+      {trips.map((trip) => (
+        <Trip
+          onTripDelete={onHandleTripDelete}
+          onTripUpdate={onHandleTripUpdate}
+          location={findLocation(trip)}
+          trip={trip}
+        />
+      ))}
     </>
   );
 }

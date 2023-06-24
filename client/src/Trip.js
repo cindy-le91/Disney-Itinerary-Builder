@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useCallback, useState, useEffect } from 'react';
 import TimePicker from './TimePicker.js';
 import CinderellaCastle from './disneyicons/WDWicon_CinderellaCastle.svg';
@@ -16,6 +18,7 @@ export default function Trip({ trip, onTripDelete, onTripUpdate, location }) {
   const [selectedTime, setSelectedTime] = useState();
 
   function convertTimeFormat(timeString) {
+    // convert start time
     const [hours, minutes, seconds] = timeString.split(':');
 
     const date = new Date();
@@ -33,6 +36,7 @@ export default function Trip({ trip, onTripDelete, onTripUpdate, location }) {
   }
 
   const enableEdit = () => {
+    // changes from a menu to a dropdown
     setIsEdit(true);
   };
 
@@ -46,6 +50,7 @@ export default function Trip({ trip, onTripDelete, onTripUpdate, location }) {
       const payload = { startTime: time };
 
       fetch(`/api/trip/${id}`, {
+        //updates the time
         method: 'PUT',
         body: JSON.stringify(payload),
         headers: {
@@ -65,10 +70,11 @@ export default function Trip({ trip, onTripDelete, onTripUpdate, location }) {
           console.log('An error occurred while editing the trip:', error);
         });
     },
-    [trip.eventId]
+    [trip.eventId, onTripUpdate]
   );
 
   const handleRemove = useCallback(() => {
+    // delete
     const id = trip.eventId;
     onTripDelete(trip);
   });
