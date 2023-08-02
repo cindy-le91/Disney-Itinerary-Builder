@@ -48,11 +48,14 @@ app.post('/api/auth/sign-up', async (req, res, next) => {
 });
 
 app.post('/api/auth/sign-in', async (req, res, next) => {
+  console.log('test');
   try {
     const { username, password } = req.body;
     if (!username || !password) {
       throw new ClientError(401, 'invalid login');
     }
+    console.log('test');
+
     const sql = `
       select "userId",
             "password"
@@ -62,6 +65,8 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
     const params = [username];
     const result = await db.query(sql, params);
     const [user] = result.rows;
+    console.log('test');
+
     if (!user) {
       throw new ClientError(401, 'invalid login');
     }
@@ -71,10 +76,15 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
     if (!isMatching) {
       throw new ClientError(401, 'invalid login');
     }
+    console.log('1');
     const payload = { userId, username };
+    console.log(2);
+    console.log(process.env.TOKEN_SECRET);
     const token = jwt.sign(payload, process.env.TOKEN_SECRET);
+
     res.json({ token, user: payload });
   } catch (err) {
+    console.error(err);
     next(err);
   }
 });
@@ -93,6 +103,7 @@ app.post('/api/trip', authorizationMiddleware, async (req, res, next) => {
 
     res.json({ message: 'success' }); // TODO send proper response
   } catch (err) {
+    console.log(err);
     next(err);
   }
 });

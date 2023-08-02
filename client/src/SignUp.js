@@ -20,10 +20,8 @@ function SignUp() {
         throw new Error('Error signing in');
       }
 
-      // Handle successful sign-in, e.g., set token in local storage, update state, etc.
       navigate('/sign-in');
     } catch (error) {
-      // Handle error during sign-in
       console.error('Error signing in:', error);
     }
   };
