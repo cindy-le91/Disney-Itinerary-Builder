@@ -17,6 +17,7 @@ function SignIn({ onLogin }) {
       });
 
       if (!response.ok) {
+        console.log(await response.json());
         throw new Error('Error signing in');
       }
 
