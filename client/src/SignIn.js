@@ -38,7 +38,7 @@ function SignIn({ onLogin }) {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: '10px', // Adds space between lines
+        gap: '10px',
       }}>
       <h2 style={{ paddingTop: '20px' }}>Sign In</h2>
       <form onSubmit={(e) => e.preventDefault()}>

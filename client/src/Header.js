@@ -26,9 +26,8 @@ export default function Header({ authUser }) {
         }}>
         <nav class="navbar navbar-expand-lg">
           <div class="container-fluid">
-            <a
+            <p
               class="navbar-brand"
-              href="#"
               style={{
                 backgroundColor: '#C3CDE6',
                 fontFamily: 'Sacramento',
@@ -36,7 +35,7 @@ export default function Header({ authUser }) {
               }}>
               {' '}
               Disney Itinerary Builder
-            </a>
+            </p>
             <button
               class="navbar-toggler"
               type="button"
@@ -52,23 +51,23 @@ export default function Header({ authUser }) {
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                   {!authUser && (
-                    <a
+                    <button
                       class="nav-link active"
                       aria-current="page"
                       href="#"
                       onClick={handleLogin}>
                       Login
-                    </a>
+                    </button>
                   )}
                   {authUser && (
-                    <a
+                    <button
                       class="nav-link active"
                       aria-current="page"
                       href="#"
                       onClick={handleLogout}
                       style={{ float: 'right' }}>
                       Logout
-                    </a>
+                    </button>
                   )}
                 </li>
               </ul>

@@ -58,6 +58,7 @@ export default function Tabs() {
             marginTop: '2px',
           }}>
           <img
+            alt="dole whip"
             src={DoleWhip}
             style={{
               width: '40px',

@@ -62,7 +62,7 @@ export default function Dinings({ authUser }) {
     }
 
     fetchDining();
-  }, []);
+  });
 
   const openModal = (data) => {
     const modal = document.getElementById('myModal');
@@ -78,7 +78,7 @@ export default function Dinings({ authUser }) {
   };
 
   const addToTrip = async () => {
-    const token = sessionStorage.getItem('token'); // Retrieve the bearer token from session storage
+    const token = sessionStorage.getItem('token');
     const modal = document.getElementById('myModal');
     modal.style.display = 'none';
 
