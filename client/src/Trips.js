@@ -4,7 +4,7 @@ import DeleteModal from './DeleteModal.js';
 
 export default function Trips({ authUser }) {
   const [trips, setTrips] = useState([]);
-  const [showModal, setShowModal] = useState(false); // State variable for modal visibility
+  const [showModal, setShowModal] = useState(false);
   const [selectedTrip, setSelectedTrip] = useState();
 
   const locationMap = {
@@ -153,13 +153,12 @@ export default function Trips({ authUser }) {
     );
 
     updatedTrips.sort((tripA, tripB) => {
-      // Compare the start time of tripA and tripB
       if (tripA.startTime < tripB.startTime) {
-        return -1; // tripA should be sorted before tripB
+        return -1;
       } else if (tripA.startTime > tripB.startTime) {
-        return 1; // tripA should be sorted after tripB
+        return 1;
       }
-      return 0; // tripA and tripB have equal start times
+      return 0;
     });
 
     setTrips(updatedTrips);

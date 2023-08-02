@@ -34,45 +34,63 @@ export default function Attraction(props) {
           }}>
           {location === 'Fantasyland' && (
             <img
+              alt="cinderella castle"
               src={CinderellaCastle}
               style={{ width: '60px', height: '60px' }}></img>
           )}
           {location === "Star Wars: Galaxy's Edge" && (
             <img
+              alt="millenium falcon"
               src={MillenniumFalcon}
               style={{ width: '60px', height: '60px' }}></img>
           )}
           {location === 'Frontierland' && (
             <img
+              alt="expedition everest"
               src={ExpeditionEverest}
               style={{ width: '60px', height: '60px' }}></img>
           )}
           {location === 'Tomorrowland' && (
             <img
+              alt="space mountain"
               src={SpaceMountain}
               style={{ width: '60px', height: '60px' }}></img>
           )}
           {location === 'Main Street, U.S.A.' && (
-            <img src={Entrance} style={{ width: '60px', height: '60px' }}></img>
+            <img
+              alt="entrance"
+              src={Entrance}
+              style={{ width: '60px', height: '60px' }}></img>
           )}
           {location === 'Adventureland' && (
-            <img src={Tree} style={{ width: '60px', height: '60px' }}></img>
+            <img
+              alt="tree"
+              src={Tree}
+              style={{ width: '60px', height: '60px' }}></img>
           )}
           {location === 'Critter Country' && (
-            <img src={LogRide} style={{ width: '60px', height: '60px' }}></img>
+            <img
+              alt="log ride"
+              src={LogRide}
+              style={{ width: '60px', height: '60px' }}></img>
           )}
           {location === "Mickey's Toontown" && (
             <img
+              alt="mickey ice cream"
               src={MickeyIceCream}
               style={{ width: '60px', height: '60px' }}></img>
           )}
           {location === 'New Orleans Square' && (
             <img
+              alt="tower of terror"
               src={TowerofTerror}
               style={{ width: '60px', height: '60px' }}></img>
           )}
           {location === 'Disneyland Park' && (
-            <img src={Monorail} style={{ width: '60px', height: '60px' }}></img>
+            <img
+              alt="monorail"
+              src={Monorail}
+              style={{ width: '60px', height: '60px' }}></img>
           )}
         </div>
         <div

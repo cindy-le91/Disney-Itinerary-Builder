@@ -36,7 +36,6 @@ export default function Trip({ trip, onTripDelete, onTripUpdate, location }) {
   }
 
   const enableEdit = () => {
-    // changes from a menu to a dropdown
     setIsEdit(true);
   };
 
