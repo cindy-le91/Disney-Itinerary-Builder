@@ -3,9 +3,23 @@ import Attraction from './Attraction.js';
 import TimePicker from './TimePicker.js';
 
 export default function Attractions({ authUser }) {
+  const overlay = {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Transparent black background
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 1000, // Place it at the forefront
+  };
+
   const [attractions, setAttractions] = useState([]);
   const [selectedAttraction, setSelectedAttraction] = useState(null);
   const [selectedTime, setSelectedTime] = useState();
+  const [isLoading, setIsLoading] = useState(false);
 
   const locationMap = {
     matterhornbobsleds: 'Fantasyland',
@@ -63,6 +77,7 @@ export default function Attractions({ authUser }) {
 
   useEffect(() => {
     async function fetchAttractions() {
+      setIsLoading(true);
       const disneyLandResortId = '7340550b-c14d-4def-80bb-acdb51d49a66';
 
       const response = await fetch(
@@ -70,11 +85,15 @@ export default function Attractions({ authUser }) {
       );
       const jsonData = await response.json();
 
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
       const attractions = jsonData['children'].filter((x) => {
         return x.entityType === 'ATTRACTION';
       });
 
       setAttractions(attractions);
+
+      setIsLoading(false);
     }
 
     fetchAttractions();
@@ -128,6 +147,14 @@ export default function Attractions({ authUser }) {
 
   return (
     <div>
+      {isLoading && ( // Use curly braces to wrap the condition
+        <div style={overlay}>
+          <div className="spinner-border text-primary" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      )}
+
       <div id="myModal" className="modal" tabIndex="-1" role="dialog">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
