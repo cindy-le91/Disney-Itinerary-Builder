@@ -173,6 +173,10 @@ export default function Trips({ authUser }) {
     setShowModal(false);
   };
 
+  if (trips.length === 0) {
+    return <div>No Trips</div>;
+  }
+
   return (
     <>
       {showModal && (
