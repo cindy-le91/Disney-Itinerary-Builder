@@ -9,7 +9,6 @@ I wanted to build a more user friendly application that was easier to navigate t
 ## Technologies Used
 
 - React.js
-- Webpack
 - Bootstrap 5
 - Node.js
 - HTML5
@@ -33,29 +32,21 @@ Try the application live at [https://disney-planner.azurewebsites.net/]
 
 ![SGT React](assets/sgt-react.gif)
 
-## Development
-
-### System Requirements
-
-- Node.js 10 or higher
-- NPM 6 or higher
-- MongoDB 4 or higher
-
 ### Getting Started
 
-1. Start PostgreSQL
+1. Start PostgreSQL:
 
 ```
 sudo service postgresql start
 ```
 
-2. Create database (replace name-of-database with a name of your choosing)
+2. Create database (replace name-of-database with a name of your choosing):
 
 ```
 createdb name-of-database
 ```
 
-3. In a separate terminal, run
+3. In a separate terminal, run:
 
 ```
 npm run db:import
@@ -63,7 +54,7 @@ npm run db:import
 
 to create your tables
 
-4. Install all dependencies with
+4. Install all dependencies with:
 
 ```
 npm install
