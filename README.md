@@ -34,19 +34,19 @@ Try the application live at [https://disney-planner.azurewebsites.net/]
 
 ### Getting Started
 
-1. Start PostgreSQL:
+1. Start PostgreSQL
 
 ```
 sudo service postgresql start
 ```
 
-2. Create database (replace name-of-database with a name of your choosing):
+2. Create database (replace name-of-database with a name of your choosing)
 
 ```
 createdb name-of-database
 ```
 
-3. In a separate terminal, run:
+3. In a separate terminal, run
 
 ```
 npm run db:import
@@ -133,77 +133,3 @@ If your final project will _not_ be using a database, edit `package.json` to rem
 1. Go to [http://localhost:3000](http://localhost:3000) in your browser. You should see the message from the server below the React logo, and in the browser console.
    ![](md.assets/client-server.png)
 1. If you see the message from the server in your browser you are good to go, your client and server are communicating.
-
-#### Set up the database
-
-1. In your browser navigate to the site you used for your database design.
-1. Export your database as PostgreSQL, this should generate the SQL code for creating your database tables.
-   - Reach out to an instructor if you have any issues with this step
-1. Copy the generated SQL code and paste it into `database/schema.sql` below the preexisting sql code in the file. The end result should look something like: _(You will likely have more tables)_
-
-   ```SQL
-   set client_min_messages to warning;
-
-   -- DANGER: this is NOT how to do it in the real world.
-   -- `drop schema` INSTANTLY ERASES EVERYTHING.
-   drop schema "public" cascade;
-
-   create schema "public";
-
-   create table "public"."todos" (
-       "todoId"      serial,
-       "task"        text           not null,
-       "isCompleted" boolean        not null,
-       "createdAt"   timestamptz(6) not null default now(),
-       "updatedAt"   timestamptz(6) not null default now(),
-       primary key ("todoId")
-   );
-   ```
-
-   - **NOTE:** Database design websites do not do a perfect job of generating SQL, so you may need to make some adjustments to your SQL for it to work correctly. Reach out to your instructor if you need assistance.
-
-1. In a separate terminal, run `npm run db:import` to create your tables
-1. Use `pgweb` (at `localhost:8081`) to verify your tables were created successfully
-1. In `pgweb` you should see your database and tables; if you do not, stop here and reach out to an instructor for help
-1. At this point your database is setup and you are good to start using it. However there is no data in your database, which isn't necessarily a bad thing, but if you want some starting data in your database you need to add insert statements into the `database/data.sql` file. You can add whatever starting data you need/want. Here is an example:
-   ```SQL
-   insert into "todos" ("task", "isCompleted")
-   values
-       ('Learn to code', false),
-       ('Build projects', false),
-       ('Get a job', false);
-   ```
-1. After any changes to `database/schema.sql` or `database/data.sql` re-run the `npm run db:import` command to update your database. Use `pgweb` to verify your changes were successfully applied
-   ![](md.assets/pgweb-with-data.png)
-
-**Happy coding!!!!**
-
----
-
-### Available `npm` commands explained
-
-Below is an explanation of all included `npm` commands in the root `package.json`. These are primarily used for deployment purposes and should not be necessary for development.
-
-1. `start`
-   - The `start` script starts the Node server in `production` mode, without any file watchers.
-1. `build`
-   - The `build` script executes `npm run build` in the context of the `client` folder. This builds your React app for production. This is used during deployment, and not commonly needed during development.
-1. `db:import`
-   - The `db:import` script executes `database/import.sh`, which executes the `database/schema.sql` and `database/data.sql` files to build and populate your database.
-1. `dev`
-   - Starts all the development servers.
-1. Not directly used by developer
-   1. `install:*`
-   - These scripts install dependencies in the `client` and `server` folders, and copy `.env.example` to `.env` if it doesn't already exist.
-   1. `dev:*`
-   - These scripts start the individual development servers.
-   1. `postinstall`
-      - The `postinstall` script is automatically run when you run `npm install`. It is executed after the dependencies are installed. Specifically for this project the `postinstall` script is used to install the `client` and `server` dependencies.
-   1. `prepare`
-      - The `prepare` script is similar to `postinstall` — it is executed before `install`. Specifically for this project it is used to install `husky`.
-
----
-
-## Deployment
-
-Once you are ready, deployment instructions can be found [HERE](https://lms.learningfuze.com/code-guides/Learning-Fuze/curriculum/heroku-deployment)
