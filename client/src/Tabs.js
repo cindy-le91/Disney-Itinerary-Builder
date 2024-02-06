@@ -4,59 +4,43 @@ import PalaRound from './disneyicons/DLPicon_PalaRound.svg';
 import DoleWhip from './disneyicons/DLPicon_DoleWhip.svg';
 
 export default function Tabs() {
+  const navigate = useNavigate();
+
+  const handleLinkClick = (to) => {
+    navigate(to);
+  };
+
+  const tabStyle = {
+    flexGrow: 1,
+    textAlign: 'center',
+    border: '2px solid #C3CDE6',
+    padding: '10px',
+    fontSize: '20px',
+    fontFamily: 'Poppins, sans-serif',
+    borderRadius: '10px',
+    marginTop: '2px',
+    cursor: 'pointer',
+  };
+
   return (
     <div style={{}}>
       <div style={{ display: 'flex' }}>
-        <div
-          style={{
-            flexGrow: 1,
-            textAlign: 'center',
-            border: '2px solid #C3CDE6',
-            padding: '10px',
-            fontSize: '20px',
-            fontFamily: 'Poppins, sans-serif',
-            borderRadius: '10px',
-            marginTop: '2px',
-          }}>
-          <Link to="/trips" style={{ textDecoration: 'none', color: 'black' }}>
-            Trips
-          </Link>
+        <div style={tabStyle} onClick={() => handleLinkClick('/trips')}>
+          Trips
         </div>
-        <div
-          style={{
-            flexGrow: 1,
-            textAlign: 'center',
-            border: '2px solid #C3CDE6',
-            padding: '10px',
-            fontSize: '20px',
-            fontFamily: 'Poppins, sans-serif',
-            borderRadius: '10px',
-            marginTop: '2px',
-          }}>
+        <div style={tabStyle} onClick={() => handleLinkClick('/attractions')}>
           <img
             src={PalaRound}
             style={{
               width: '40px',
               height: '40px',
               marginRight: '10px',
-            }}></img>
-          <Link
-            to="/attractions"
-            style={{ textDecoration: 'none', color: 'black' }}>
-            Attractions
-          </Link>
+            }}
+            alt="Pala Round"
+          />
+          Attractions
         </div>
-        <div
-          style={{
-            flexGrow: 1,
-            textAlign: 'center',
-            border: '2px solid #C3CDE6',
-            padding: '10px',
-            fontSize: '20px',
-            fontFamily: 'Poppins, sans-serif',
-            borderRadius: '10px',
-            marginTop: '2px',
-          }}>
+        <div style={tabStyle} onClick={() => handleLinkClick('/dinings')}>
           <img
             alt="dole whip"
             src={DoleWhip}
@@ -64,27 +48,12 @@ export default function Tabs() {
               width: '40px',
               height: '40px',
               marginRight: '10px',
-            }}></img>
-          <Link
-            to="/dinings"
-            style={{ textDecoration: 'none', color: 'black' }}>
-            Dining
-          </Link>
+            }}
+          />
+          Dining
         </div>
-        <div
-          style={{
-            flexGrow: 1,
-            textAlign: 'center',
-            border: '2px solid #C3CDE6',
-            padding: '10px',
-            fontSize: '20px',
-            fontFamily: 'Poppins, sans-serif',
-            borderRadius: '10px',
-            marginTop: '2px',
-          }}>
-          <Link to="/map" style={{ textDecoration: 'none', color: 'black' }}>
-            Map
-          </Link>
+        <div style={tabStyle} onClick={() => handleLinkClick('/map')}>
+          Map
         </div>
       </div>
     </div>
