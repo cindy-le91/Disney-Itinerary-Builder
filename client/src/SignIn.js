@@ -41,6 +41,10 @@ function SignIn({ onLogin }) {
         gap: '10px',
       }}>
       <h2 style={{ paddingTop: '20px' }}>Sign In</h2>
+      <h6 style={{ paddingTop: '20px' }}>
+        For guest account use login: guest and password: guest123
+      </h6>
+
       <form onSubmit={(e) => e.preventDefault()}>
         <input
           placeholder="Username"
