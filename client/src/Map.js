@@ -83,19 +83,24 @@ const Map = () => {
   };
 
   return (
-    <div
-      id="map-container"
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}>
-      <div className="map-wrapper" ref={mapContainerRef}>
-        <img
-          src={mapImage}
-          alt="Map"
-          style={{ width: '1290px', height: 'auto' }}
-        />
-        {renderMarkers()}
+    <div>
+      <p style={{ marginTop: '20px' }}>Note: This map is draggable</p>
+
+      <div
+        style={{ cursor: 'pointer' }}
+        id="map-container"
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseUp}>
+        <div className="map-wrapper" ref={mapContainerRef}>
+          <img
+            src={mapImage}
+            alt="Map"
+            style={{ width: '1290px', height: 'auto' }}
+          />
+          {renderMarkers()}
+        </div>
       </div>
     </div>
   );
